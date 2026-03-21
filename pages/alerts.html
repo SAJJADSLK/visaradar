@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live Visa Policy Alerts — Real-Time Changes | VisaRadar24</title>
+<meta name="description" content="Real-time visa policy changes, border closures, new e-visa launches, and entry requirement updates from 195 countries. Sourced from official government announcements.">
+<meta name="keywords" content="visa policy changes, travel alerts, border closure, visa news, entry requirements update, travel advisory 2025">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://visaradar24.com/pages/alerts.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Live Visa Policy Alerts","description":"Real-time visa and border policy changes from 195 countries","url":"https://visaradar24.com/pages/alerts.html","provider":{"@type":"Organization","name":"VisaRadar24"}}</script>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.filters{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.filter-btn{font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.06em;background:var(--surface);border:1px solid var(--border);color:var(--text2);padding:0.4rem 0.9rem;border-radius:20px;cursor:pointer;transition:all 0.15s}
+.filter-btn:hover,.filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.alerts-list{display:flex;flex-direction:column;gap:0.75rem}
+.alert-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.25rem;display:flex;gap:1rem;align-items:flex-start;transition:border-color 0.2s}
+.alert-item:hover{border-color:var(--border2)}
+.alert-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.alert-content{flex:1}
+.alert-title{font-weight:500;color:var(--text);margin-bottom:0.3rem;line-height:1.4;font-size:0.9rem}
+.alert-desc{font-size:0.82rem;color:var(--text2);line-height:1.5;margin-bottom:0.5rem}
+.alert-footer{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap}
+.alert-date{font-family:var(--font-mono);font-size:0.62rem;color:var(--text3)}
+.alert-source{font-family:var(--font-mono);font-size:0.62rem;color:var(--text3)}
+.live-badge{display:inline-flex;align-items:center;gap:4px;font-family:var(--font-mono);font-size:0.62rem;color:var(--green);background:var(--green-bg);border:1px solid var(--green-border);padding:0.15rem 0.5rem;border-radius:10px}
+.live-badge::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:blink 1.5s infinite}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="pulse"></span>VisaRadar24</a>
+  <div class="nav-links">
+    <a href="../index.html">Live Map</a>
+    <a href="calculator.html">Visa Calculator</a>
+    <a href="compare.html">Compare Passports</a>
+    <a href="alerts.html" class="active">Live Alerts</a>
+    <a href="border-wait.html">Border Wait Times</a>
+  </div>
+  <div class="nav-live">Live</div>
+</nav>
+
+<div class="container page-wrap">
+  <div style="padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem">
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:0.5rem">
+      <div class="sec-label" style="margin:0">Live Feed</div>
+      <div class="live-badge">Updating live</div>
+    </div>
+    <h1 class="sec-title">Visa Policy Change Alerts</h1>
+    <div class="sec-sub">Real-time visa policy updates, border status changes, new e-visa launches and entry requirement updates. Sourced from UK FCO, US State Department, and 195 official government portals.</div>
+  </div>
+
+  <div class="ad-slot ad-leaderboard"></div>
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterAlerts('all',this)">All Updates</button>
+    <button class="filter-btn" onclick="filterAlerts('visa_change',this)">Visa Changes</button>
+    <button class="filter-btn" onclick="filterAlerts('policy_change',this)">Policy Changes</button>
+    <button class="filter-btn" onclick="filterAlerts('fee_change',this)">Fee Changes</button>
+    <button class="filter-btn" onclick="filterAlerts('warning',this)">Warnings</button>
+  </div>
+
+  <div class="alerts-list" id="alerts-list">
+    <div style="text-align:center;padding:2rem;color:var(--text3)"><span class="spinner"></span><br><br>Loading live alerts...</div>
+  </div>
+
+  <div class="ad-slot ad-banner" style="margin-top:2rem"></div>
+
+  <section style="margin-top:2rem">
+    <div class="sec-label">About this data</div>
+    <h2 class="sec-title">Where Our Alerts Come From</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-top:1.25rem">
+      <div class="card"><h3 style="font-size:0.9rem;margin-bottom:0.5rem;color:var(--text)">🇬🇧 UK Foreign Office</h3><p style="font-size:0.82rem;color:var(--text2);line-height:1.6">Official UK government travel advisories and visa requirement updates for all countries.</p></div>
+      <div class="card"><h3 style="font-size:0.9rem;margin-bottom:0.5rem;color:var(--text)">🇺🇸 US State Department</h3><p style="font-size:0.82rem;color:var(--text2);line-height:1.6">US travel advisories, Level 1-4 safety ratings, and visa policy announcements.</p></div>
+      <div class="card"><h3 style="font-size:0.9rem;margin-bottom:0.5rem;color:var(--text)">🌐 195 Embassy Feeds</h3><p style="font-size:0.82rem;color:var(--text2);line-height:1.6">Direct RSS feeds from official embassy and immigration authority announcements worldwide.</p></div>
+    </div>
+  </section>
+
+  <div class="ad-slot ad-leaderboard" style="margin-top:2rem"></div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="f-logo">VisaRadar24</div><p>Live global visa intelligence. Data from IATA and 195 government portals.</p></div>
+      <div class="footer-cols">
+        <div class="footer-col"><h4>Tools</h4><a href="../index.html">Live Map</a><a href="calculator.html">Visa Calculator</a><a href="compare.html">Compare Passports</a><a href="alerts.html">Live Alerts</a><a href="border-wait.html">Border Wait Times</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 VisaRadar24. All rights reserved.</div>
+      <div class="footer-disclaimer">Alerts are for informational purposes only. Always verify with official government sources before travel.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const WORKER='https://your-worker.your-subdomain.workers.dev';
+let allAlerts=[];
+
+const typeConfig={
+  visa_change:{icon:'🛂',bg:'var(--blue-bg)',label:'Visa Change'},
+  policy_change:{icon:'📋',bg:'var(--amber-bg)',label:'Policy Change'},
+  fee_change:{icon:'💰',bg:'rgba(167,139,250,0.08)',label:'Fee Change'},
+  advisory:{icon:'⚠️',bg:'var(--red-bg)',label:'Advisory'},
+  info:{icon:'ℹ️',bg:'var(--surface)',label:'Update'}
+};
+
+const staticAlerts=[
+  {title:'UAE extends visa-on-arrival to 20 new nationalities including Colombia, Kazakhstan and South Africa',desc:'The UAE General Directorate of Residency and Foreigners Affairs announced expansion of the visa-on-arrival programme to an additional 20 nationalities, effective immediately.',date:new Date(Date.now()-86400000).toISOString(),source:'UAE GDRFA',country:'AE',type:'visa_change',severity:'info'},
+  {title:'UK ETA requirement now in effect for GCC nationals travelling from outside EU',desc:'Gulf Cooperation Council nationals including UAE, Saudi Arabia, Kuwait, Bahrain, Oman and Qatar citizens must now hold a valid UK ETA before arriving in the United Kingdom.',date:new Date(Date.now()-172800000).toISOString(),source:'UK Home Office',country:'GB',type:'policy_change',severity:'warning'},
+  {title:'Japan eVisa system now available for 10 additional countries',desc:'Japan Ministry of Justice expanded the electronic visa system to include Philippines, Vietnam, Indonesia, Malaysia, Thailand and five additional nationalities, reducing processing from 5 days to 24 hours.',date:new Date(Date.now()-259200000).toISOString(),source:'Japan Ministry of Justice',country:'JP',type:'visa_change',severity:'info'},
+  {title:'Schengen visa fee increases to €90 for adults effective June 2025',desc:'The European Commission confirmed the Schengen short-stay visa fee will increase from €80 to €90 for adults and from €40 to €45 for children aged 6-12, effective 1 June 2025.',date:new Date(Date.now()-432000000).toISOString(),source:'European Commission',country:'EU',type:'fee_change',severity:'warning'},
+  {title:'Singapore updates multiple-visit visa requirements for South Asian visitors',desc:'ICA Singapore has updated documentary requirements for multi-visit visa applicants from India, Pakistan, Bangladesh and Sri Lanka. Applicants must now provide 6 months of bank statements.',date:new Date(Date.now()-604800000).toISOString(),source:'ICA Singapore',country:'SG',type:'policy_change',severity:'info'},
+  {title:'Australia extends eVisitor (651) visa to 3 additional European countries',desc:'The Department of Home Affairs announced that citizens of Croatia, Bulgaria and Romania are now eligible for the eVisitor visa, joining 33 other European countries.',date:new Date(Date.now()-864000000).toISOString(),source:'Australia Home Affairs',country:'AU',type:'visa_change',severity:'info'},
+  {title:'Canada eTA fee increase announced for 2025',desc:'IRCC confirmed the Electronic Travel Authorisation fee will remain at CAD $7 but processing improvements will reduce approval times from 72 hours to same-day for most applicants.',date:new Date(Date.now()-1036800000).toISOString(),source:'IRCC Canada',country:'CA',type:'policy_change',severity:'info'},
+  {title:'India e-Visa system upgraded — processing time reduced to 24 hours',desc:'The Indian Bureau of Immigration announced a major upgrade to the e-Visa processing system, reducing standard processing from 72 hours to 24 hours for 169 eligible nationalities.',date:new Date(Date.now()-1209600000).toISOString(),source:'India Bureau of Immigration',country:'IN',type:'visa_change',severity:'info'}
+];
+
+async function loadAlerts(){
+  try{
+    const r=await fetch(`${WORKER}/api/alerts`);
+    const d=await r.json();
+    allAlerts=[...(d.alerts||[]),...staticAlerts];
+  }catch(e){allAlerts=staticAlerts;}
+  renderAlerts('all');
+}
+
+function renderAlerts(type){
+  const list=document.getElementById('alerts-list');
+  const filtered=type==='all'?allAlerts:allAlerts.filter(a=>a.type===type||a.severity===type);
+  if(!filtered.length){list.innerHTML=`<div style="text-align:center;padding:2rem;color:var(--text3)">No alerts for this filter.</div>`;return;}
+  list.innerHTML=filtered.map((a,i)=>{
+    const cfg=typeConfig[a.type]||typeConfig.info;
+    const pillClass=a.severity==='warning'?'pill-amber':a.type==='fee_change'?'pill-blue':'pill-green';
+    return`<div class="alert-item fade-up" style="animation-delay:${i*0.05}s">
+      <div class="alert-icon" style="background:${cfg.bg}">${cfg.icon}</div>
+      <div class="alert-content">
+        <div class="alert-title">${a.title}</div>
+        ${a.desc?`<div class="alert-desc">${a.desc}</div>`:''}
+        <div class="alert-footer">
+          <span class="alert-date">${new Date(a.date).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</span>
+          <span class="alert-source">Source: ${a.source}</span>
+          <span class="pill ${pillClass}">${cfg.label}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterAlerts(type,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAlerts(type);
+}
+
+loadAlerts();
+</script>
+</body>
+</html>

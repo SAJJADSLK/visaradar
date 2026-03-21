@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://visaradar24.com/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://visaradar24.com/calculator.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://visaradar24.com/compare.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://visaradar24.com/border-wait.html</loc><changefreq>hourly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://visaradar24.com/alerts.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://visaradar24.com/about.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://visaradar24.com/privacy.html</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://visaradar24.com/contact.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=US</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=GB</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=AE</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=DE</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=JP</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=SG</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=AU</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=CA</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=FR</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=TR</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=TH</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=IN</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=CN</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=PH</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=SA</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=KR</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=ID</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=MY</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://visaradar24.com/country.html?c=NZ</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://visaradar24.com/calculator.html?from=AE&amp;to=US</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://visaradar24.com/calculator.html?from=IN&amp;to=US</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://visaradar24.com/calculator.html?from=IN&amp;to=AE</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://visaradar24.com/calculator.html?from=GB&amp;to=US</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://visaradar24.com/calculator.html?from=PH&amp;to=AE</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://visaradar24.com/compare.html?a=AE&amp;b=US</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://visaradar24.com/compare.html?a=IN&amp;b=US</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+</urlset>

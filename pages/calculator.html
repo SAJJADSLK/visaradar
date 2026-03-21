@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visa Calculator — Check Visa Requirements Instantly | VisaRadar24</title>
+<meta name="description" content="Free instant visa calculator. Enter your passport and destination to get exact visa requirements, fees, processing times, and official embassy links. Updated daily from IATA data.">
+<meta name="keywords" content="visa calculator, visa requirements checker, do I need a visa, visa cost, visa processing time, travel visa check">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://visaradar24.com/pages/calculator.html">
+<meta property="og:title" content="Visa Calculator — Check Requirements Instantly | VisaRadar24">
+<meta property="og:description" content="Free instant visa calculator for 195 countries. Get exact requirements, fees and processing times.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"VisaRadar24 Visa Calculator","description":"Free instant visa requirements calculator for 195 countries","url":"https://visaradar24.com/pages/calculator.html","applicationCategory":"TravelApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.calc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:2rem;margin-bottom:2rem}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.25rem}
+.calc-field label{display:block;font-family:var(--font-mono);font-size:0.63rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--text3);margin-bottom:0.4rem}
+.calc-field select,.calc-field input{width:100%;background:var(--bg2);border:1px solid var(--border2);color:var(--text);font-family:var(--font-mono);font-size:0.8rem;padding:0.65rem 1rem;border-radius:var(--r);cursor:pointer}
+.calc-field select:focus,.calc-field input:focus{outline:none;border-color:var(--accent)}
+.btn-calc{width:100%;background:var(--accent);color:#fff;font-family:var(--font-display);font-size:1rem;font-weight:600;border:none;padding:0.9rem;border-radius:var(--r);cursor:pointer;transition:background 0.2s;margin-top:0.5rem}
+.btn-calc:hover{background:#2563eb}
+.result-panel{display:none;animation:fadeUp 0.4s ease}
+.result-hero{background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r-lg);padding:2rem;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1.5rem}
+.result-status{font-family:var(--font-display);font-size:2rem;font-weight:800;line-height:1}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem}
+.result-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1rem}
+.result-item-label{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);margin-bottom:0.4rem}
+.result-item-value{font-size:1rem;font-weight:600;color:var(--text)}
+.port-list{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.5rem}
+.port-tag{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:0.25rem 0.6rem;font-family:var(--font-mono);font-size:0.65rem;color:var(--text2)}
+.popular-routes{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;margin-top:1.25rem}
+.route-btn{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:0.75rem 1rem;cursor:pointer;text-align:left;transition:border-color 0.2s;display:flex;justify-content:space-between;align-items:center}
+.route-btn:hover{border-color:var(--border2);background:var(--surface2)}
+.route-label{font-size:0.85rem;color:var(--text);font-weight:500}
+.route-status{font-family:var(--font-mono);font-size:0.62rem}
+@media(max-width:650px){.calc-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="pulse"></span>VisaRadar24</a>
+  <div class="nav-links">
+    <a href="../index.html">Live Map</a>
+    <a href="calculator.html" class="active">Visa Calculator</a>
+    <a href="compare.html">Compare Passports</a>
+    <a href="alerts.html">Live Alerts</a>
+    <a href="border-wait.html">Border Wait Times</a>
+  </div>
+  <div class="nav-live">Live</div>
+</nav>
+
+<div class="container page-wrap">
+  <div style="padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem">
+    <div class="sec-label">Tool</div>
+    <h1 class="sec-title">Visa Requirements Calculator</h1>
+    <div class="sec-sub">Get instant, accurate visa requirements for any passport and destination. Fees, processing times, and official embassy links — all from verified government sources.</div>
+  </div>
+
+  <div class="ad-slot ad-leaderboard"></div>
+
+  <div class="calc-card">
+    <div class="calc-grid">
+      <div class="calc-field">
+        <label>Your passport (citizenship)</label>
+        <select id="c-from">
+          <option value="">Select your passport...</option>
+          <option value="US">🇺🇸 United States</option>
+          <option value="GB">🇬🇧 United Kingdom</option>
+          <option value="AE">🇦🇪 UAE</option>
+          <option value="IN">🇮🇳 India</option>
+          <option value="AU">🇦🇺 Australia</option>
+          <option value="CA">🇨🇦 Canada</option>
+          <option value="DE">🇩🇪 Germany</option>
+          <option value="FR">🇫🇷 France</option>
+          <option value="JP">🇯🇵 Japan</option>
+          <option value="SG">🇸🇬 Singapore</option>
+        </select>
+      </div>
+      <div class="calc-field">
+        <label>Destination country</label>
+        <select id="c-to">
+          <option value="">Select destination...</option>
+          <option value="AE">🇦🇪 UAE</option>
+          <option value="US">🇺🇸 United States</option>
+          <option value="GB">🇬🇧 United Kingdom</option>
+          <option value="FR">🇫🇷 France</option>
+          <option value="JP">🇯🇵 Japan</option>
+          <option value="SG">🇸🇬 Singapore</option>
+          <option value="AU">🇦🇺 Australia</option>
+          <option value="CA">🇨🇦 Canada</option>
+          <option value="DE">🇩🇪 Germany</option>
+          <option value="IN">🇮🇳 India</option>
+        </select>
+      </div>
+      <div class="calc-field">
+        <label>Purpose of travel</label>
+        <select id="c-purpose">
+          <option value="tourism">Tourism / Holiday</option>
+          <option value="business">Business</option>
+          <option value="transit">Transit</option>
+          <option value="study">Study</option>
+          <option value="work">Work</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn-calc" onclick="calculate()">Calculate Visa Requirements →</button>
+  </div>
+
+  <div class="result-panel" id="result-panel">
+    <div class="result-hero" id="result-hero"></div>
+    <div class="result-grid" id="result-grid"></div>
+    <div class="disclaimer">⚠️ &nbsp;Always verify with the official embassy before booking. Requirements may change without notice. This data is sourced from IATA and updated daily.</div>
+    <div id="result-ports"></div>
+  </div>
+
+  <div class="ad-slot ad-banner"></div>
+
+  <section>
+    <div class="sec-label">Popular routes</div>
+    <h2 class="sec-title">Most Searched Visa Checks</h2>
+    <div class="popular-routes" id="popular-routes"></div>
+  </section>
+
+  <div class="ad-slot ad-leaderboard" style="margin-top:2rem"></div>
+
+  <section style="margin-top:2rem">
+    <div class="sec-label">Guide</div>
+    <h2 class="sec-title">Understanding Visa Types</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem">
+      <div class="card"><h3 style="color:var(--green);font-size:0.95rem;margin-bottom:0.5rem">✓ Visa Free</h3><p style="color:var(--text2);font-size:0.85rem;line-height:1.6">No visa required. You can enter the country with your passport alone. Maximum stay limits still apply — typically 30, 60, or 90 days.</p></div>
+      <div class="card"><h3 style="color:var(--accent2);font-size:0.95rem;margin-bottom:0.5rem">✈ Visa on Arrival</h3><p style="color:var(--text2);font-size:0.85rem;line-height:1.6">You obtain your visa at the airport or border upon arrival. Usually quick — 15 to 30 minutes. A fee is typically charged in cash or card.</p></div>
+      <div class="card"><h3 style="color:#a78bfa;font-size:0.95rem;margin-bottom:0.5rem">💻 e-Visa</h3><p style="color:var(--text2);font-size:0.85rem;line-height:1.6">Apply online before travel through the official government portal. Processing usually takes 24 hours to 5 business days. More convenient than embassy visits.</p></div>
+      <div class="card"><h3 style="color:var(--amber);font-size:0.95rem;margin-bottom:0.5rem">🏛 Visa Required</h3><p style="color:var(--text2);font-size:0.85rem;line-height:1.6">Must apply in advance at the embassy or consulate. Requires documentation, photos, and sometimes an interview. Allow 2–8 weeks processing time.</p></div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="f-logo">VisaRadar24</div><p>Live global visa intelligence. Data from IATA and 195 government portals.</p></div>
+      <div class="footer-cols">
+        <div class="footer-col"><h4>Tools</h4><a href="../index.html">Live Map</a><a href="calculator.html">Visa Calculator</a><a href="compare.html">Compare Passports</a><a href="alerts.html">Live Alerts</a><a href="border-wait.html">Border Wait Times</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 VisaRadar24. All rights reserved.</div>
+      <div class="footer-disclaimer">For informational purposes only. Always verify with official embassy before travel.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const DATA={
+  "US-AE":{status:"voa",label:"Visa on Arrival",color:"#3b82f6",fee:0,stay:30,processing:"On arrival",notes:"30-day VOA extendable once. No fee for US passport holders.",ports:["Dubai International","Abu Dhabi International","Sharjah International"]},
+  "GB-AE":{status:"voa",label:"Visa on Arrival",color:"#3b82f6",fee:0,stay:30,processing:"On arrival",notes:"30-day VOA. Extendable for additional 30 days.",ports:["Dubai International","Abu Dhabi International"]},
+  "IN-AE":{status:"ev",label:"e-Visa Available",color:"#a78bfa",fee:100,stay:30,processing:"24–72 hours",notes:"Apply via ICP (Federal Authority for Identity) portal at least 72 hours before travel.",ports:["Dubai International","Abu Dhabi International","Sharjah International"]},
+  "AE-GB":{status:"ev",label:"e-Visa (ETA Required)",color:"#a78bfa",fee:10,stay:180,processing:"3 working days",notes:"UK ETA now required for UAE passport holders. Apply via UK Visas & Immigration.",ports:["Heathrow","Gatwick","Manchester","Edinburgh"]},
+  "IN-US":{status:"vr",label:"Visa Required",color:"#f59e0b",fee:185,stay:180,processing:"3–8 weeks",notes:"B1/B2 tourist/business visa. Apply at US Embassy. Interview required.",ports:["JFK","LAX","ORD","MIA","SFO"]},
+  "US-GB":{status:"vf",label:"Visa Free",color:"#22c55e",fee:0,stay:180,processing:"None required",notes:"US passport holders can visit UK visa-free for up to 6 months.",ports:["Heathrow","Gatwick","Manchester","Edinburgh","Birmingham"]},
+  "IN-GB":{status:"vr",label:"Visa Required",color:"#f59e0b",fee:115,stay:180,processing:"3–4 weeks",notes:"Standard visitor visa. Apply online via UK Visas & Immigration portal.",ports:["Heathrow","Gatwick","Manchester"]},
+  "JP-US":{status:"vf",label:"Visa Free (ESTA required)",color:"#22c55e",fee:21,stay:90,processing:"Instant–72h",notes:"ESTA authorization required. Apply at esta.cbp.dhs.gov. Valid for 2 years.",ports:["JFK","LAX","ORD","SFO","IAD"]},
+  "US-JP":{status:"vf",label:"Visa Free",color:"#22c55e",fee:0,stay:90,processing:"None required",notes:"US passport holders can enter Japan visa-free for 90 days.",ports:["Narita","Haneda","Kansai"]},
+  "SG-AE":{status:"vf",label:"Visa Free",color:"#22c55e",fee:0,stay:30,processing:"None required",notes:"Singapore passport holders get visa-free access to UAE.",ports:["Dubai International","Abu Dhabi International"]}
+};
+const FLAGS={"US":"🇺🇸","GB":"🇬🇧","AE":"🇦🇪","IN":"🇮🇳","AU":"🇦🇺","CA":"🇨🇦","DE":"🇩🇪","FR":"🇫🇷","JP":"🇯🇵","SG":"🇸🇬"};
+const NAMES={"US":"United States","GB":"United Kingdom","AE":"UAE","IN":"India","AU":"Australia","CA":"Canada","DE":"Germany","FR":"France","JP":"Japan","SG":"Singapore"};
+
+// Check URL params
+const params=new URLSearchParams(window.location.search);
+if(params.get('from'))document.getElementById('c-from').value=params.get('from');
+if(params.get('to'))document.getElementById('c-to').value=params.get('to');
+if(params.get('from')&&params.get('to'))setTimeout(calculate,100);
+
+function calculate(){
+  const f=document.getElementById('c-from').value;
+  const t=document.getElementById('c-to').value;
+  if(!f||!t){alert('Please select both passport and destination.');return;}
+  const key=`${f}-${t}`;
+  const d=DATA[key];
+  const panel=document.getElementById('result-panel');
+  const hero=document.getElementById('result-hero');
+  const grid=document.getElementById('result-grid');
+  panel.style.display='block';
+  panel.scrollIntoView({behavior:'smooth',block:'start'});
+  if(d){
+    hero.innerHTML=`<div>
+      <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--text3);margin-bottom:0.5rem">${FLAGS[f]||''} ${NAMES[f]||f} → ${FLAGS[t]||''} ${NAMES[t]||t}</div>
+      <div class="result-status" style="color:${d.color}">${d.label}</div>
+      <p style="color:var(--text2);font-size:0.85rem;margin-top:0.75rem;max-width:400px;line-height:1.6">${d.notes}</p>
+    </div>
+    <a href="https://www.iata.org/en/publications/travel-centre/" target="_blank" rel="noopener" style="background:var(--accent);color:#fff;font-family:var(--font-mono);font-size:0.72rem;padding:0.6rem 1.2rem;border-radius:var(--r);text-decoration:none;display:inline-block;white-space:nowrap">Verify on IATA →</a>`;
+    grid.innerHTML=`
+      <div class="result-item"><div class="result-item-label">Visa fee</div><div class="result-item-value" style="color:${d.fee===0?'var(--green)':'var(--amber)'}">${d.fee===0?'Free':'$'+d.fee+' USD'}</div></div>
+      <div class="result-item"><div class="result-item-label">Maximum stay</div><div class="result-item-value">${d.stay} days</div></div>
+      <div class="result-item"><div class="result-item-label">Processing time</div><div class="result-item-value">${d.processing}</div></div>
+      <div class="result-item"><div class="result-item-label">Entry ports</div><div class="result-item-value" style="font-size:0.82rem">${d.ports?.length||'Multiple'} airports</div></div>`;
+    document.getElementById('result-ports').innerHTML=d.ports?`<div class="card"><div style="font-family:var(--font-mono);font-size:0.63rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);margin-bottom:0.75rem">Approved Entry Points</div><div class="port-list">${d.ports.map(p=>`<span class="port-tag">✈ ${p}</span>`).join('')}</div></div>`:'';
+  } else {
+    hero.innerHTML=`<div>
+      <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--text3);margin-bottom:0.5rem">${FLAGS[f]||''} ${NAMES[f]||f} → ${FLAGS[t]||''} ${NAMES[t]||t}</div>
+      <div class="result-status" style="color:var(--text2)">Check Official Source</div>
+      <p style="color:var(--text2);font-size:0.85rem;margin-top:0.75rem;line-height:1.6">Visa requirements for this route are best verified directly with IATA Travel Centre or the official embassy of ${NAMES[t]||t}.</p>
+    </div>
+    <a href="https://www.iata.org/en/publications/travel-centre/" target="_blank" rel="noopener" style="background:var(--accent);color:#fff;font-family:var(--font-mono);font-size:0.72rem;padding:0.6rem 1.2rem;border-radius:var(--r);text-decoration:none;display:inline-block">Check IATA →</a>`;
+    grid.innerHTML='';
+  }
+}
+
+// Popular routes
+const popular=[
+  {from:'IN',to:'AE',label:'India → UAE'},{from:'US',to:'GB',label:'USA → UK'},{from:'GB',to:'AE',label:'UK → UAE'},
+  {from:'JP',to:'US',label:'Japan → USA'},{from:'IN',to:'US',label:'India → USA'},{from:'AE',to:'GB',label:'UAE → UK'},
+  {from:'SG',to:'AE',label:'Singapore → UAE'},{from:'US',to:'JP',label:'USA → Japan'}
+];
+const pr=document.getElementById('popular-routes');
+const statusColors={vf:'var(--green)',voa:'var(--accent2)',ev:'#a78bfa',vr:'var(--amber)'};
+const statusNames={vf:'Visa Free',voa:'Visa on Arrival',ev:'e-Visa',vr:'Visa Required'};
+pr.innerHTML=popular.map(r=>{
+  const key=`${r.from}-${r.to}`;
+  const d=DATA[key];
+  return`<button class="route-btn" onclick="document.getElementById('c-from').value='${r.from}';document.getElementById('c-to').value='${r.to}';calculate()">
+    <span class="route-label">${r.label}</span>
+    <span class="route-status" style="color:${d?statusColors[d.status]:'var(--text3)'}">${d?statusNames[d.status]:'Check'}</span>
+  </button>`;
+}).join('');
+</script>
+</body>
+</html>

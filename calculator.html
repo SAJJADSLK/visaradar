@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visa Requirement Calculator — VisaRadar24</title>
+<meta name="description" content="Instantly check visa requirements for any passport and destination. Covers 195 countries. Free, real-time, no signup.">
+<link rel="canonical" href="https://visaradar24.com/calculator.html">
+<meta property="og:title" content="Visa Requirement Calculator — VisaRadar24">
+<meta property="og:description" content="Check visa requirements for any passport and destination instantly.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"VisaRadar24 Visa Calculator","url":"https://visaradar24.com/calculator.html","description":"Free visa requirement calculator for 195 countries.","applicationCategory":"TravelApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+.calc-hero{text-align:center;padding:56px 0 40px}
+.calc-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;max-width:680px;margin:0 auto}
+.calc-arrow{text-align:center;font-size:1.5rem;color:var(--muted);padding:8px 0}
+.result-box{border-radius:var(--radius-lg);padding:24px;margin-top:24px;display:none}
+.result-box.visa-free{background:rgba(0,212,168,0.08);border:1px solid rgba(0,212,168,0.3)}
+.result-box.visa-on-arrival{background:rgba(0,150,255,0.08);border:1px solid rgba(0,150,255,0.3)}
+.result-box.esta{background:rgba(255,165,2,0.08);border:1px solid rgba(255,165,2,0.3)}
+.result-box.visa-required{background:rgba(255,71,87,0.08);border:1px solid rgba(255,71,87,0.3)}
+.result-icon{font-size:2rem;margin-bottom:12px}
+.result-title{font-family:var(--font-display);font-size:1.5rem;font-weight:700;margin-bottom:8px}
+.result-meta{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+.meta-item{display:flex;flex-direction:column;gap:2px}
+.meta-key{font-size:0.72rem;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.05em;color:var(--muted)}
+.meta-val{font-size:0.9rem;font-weight:500;color:var(--text)}
+.schengen-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-top:24px}
+.schengen-track{background:var(--bg2);border-radius:4px;height:10px;overflow:hidden;margin:12px 0}
+.schengen-fill{height:100%;background:var(--accent);border-radius:4px;transition:width 0.5s ease}
+.recent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:24px}
+.recent-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:border-color 0.2s}
+.recent-card:hover{border-color:var(--border2)}
+.passport-arrow{color:var(--muted2);font-size:1.2rem}
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<main>
+
+<div class="calc-hero">
+  <div class="container">
+    <div class="eyebrow" style="font-family:var(--font-mono);font-size:0.75rem;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px">Visa calculator</div>
+    <h1>Check visa requirements<br>in seconds</h1>
+    <p style="font-size:1.05rem;max-width:500px;margin:0 auto">Select your passport and destination. We'll show you exactly what you need.</p>
+  </div>
+</div>
+
+<div class="container">
+  <!-- AD SLOT 1 -->
+  <div class="mb-6">
+    <div class="ad-label">Advertisement</div>
+    <div class="ad-slot ad-slot-leaderboard">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-REPLACE_WITH_PUB_ID" data-ad-slot="7777777777" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+
+  <div class="calc-card">
+    <div class="grid-2" style="gap:16px">
+      <div>
+        <label class="form-label">🛂 Your passport (nationality)</label>
+        <select class="input" id="from-select" onchange="checkVisa()">
+          <option value="">Select passport…</option>
+          <option value="AE">🇦🇪 UAE</option>
+          <option value="US">🇺🇸 United States</option>
+          <option value="GB">🇬🇧 United Kingdom</option>
+          <option value="DE">🇩🇪 Germany</option>
+          <option value="IN">🇮🇳 India</option>
+          <option value="CN">🇨🇳 China</option>
+          <option value="PH">🇵🇭 Philippines</option>
+          <option value="JP">🇯🇵 Japan</option>
+          <option value="SG">🇸🇬 Singapore</option>
+          <option value="AU">🇦🇺 Australia</option>
+          <option value="CA">🇨🇦 Canada</option>
+          <option value="FR">🇫🇷 France</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label">✈️ Destination country</label>
+        <select class="input" id="to-select" onchange="checkVisa()">
+          <option value="">Select destination…</option>
+          <option value="US">🇺🇸 United States</option>
+          <option value="GB">🇬🇧 United Kingdom</option>
+          <option value="AE">🇦🇪 UAE</option>
+          <option value="DE">🇩🇪 Germany</option>
+          <option value="JP">🇯🇵 Japan</option>
+          <option value="SG">🇸🇬 Singapore</option>
+          <option value="AU">🇦🇺 Australia</option>
+          <option value="CA">🇨🇦 Canada</option>
+          <option value="FR">🇫🇷 France</option>
+          <option value="TR">🇹🇷 Turkey</option>
+          <option value="TH">🇹🇭 Thailand</option>
+          <option value="IN">🇮🇳 India</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="result-box" class="result-box">
+      <div class="result-icon" id="res-icon">✈️</div>
+      <div class="result-title" id="res-title">–</div>
+      <p id="res-desc" style="margin-bottom:12px"></p>
+      <div class="result-meta" id="res-meta"></div>
+      <p id="res-notes" class="text-sm" style="color:var(--muted2)"></p>
+      <div class="flex gap-3 mt-4 flex-wrap">
+        <a id="res-country-link" href="#" class="btn btn-secondary btn-sm">Full country guide →</a>
+        <a href="/alerts.html" class="btn btn-ghost btn-sm">Get policy alerts</a>
+      </div>
+    </div>
+
+    <div id="no-data" style="display:none;text-align:center;padding:24px 0;color:var(--muted2)">
+      <p>No direct data found for this combination. Please check the official embassy website.</p>
+      <a href="/alerts.html" class="btn btn-ghost btn-sm mt-3">Set up an alert for this route</a>
+    </div>
+  </div>
+
+  <!-- SCHENGEN CALCULATOR -->
+  <div class="calc-card mt-8" style="max-width:680px;margin:32px auto 0">
+    <h3 class="mb-2">Schengen 90/180-day calculator</h3>
+    <p class="text-sm mb-4">Track your Schengen zone allowance. The rule: max 90 days in any rolling 180-day period.</p>
+    <div class="grid-2" style="gap:16px;margin-bottom:16px">
+      <div>
+        <label class="form-label">Days already spent in Schengen (last 180 days)</label>
+        <input type="number" class="input" id="schengen-used" min="0" max="90" placeholder="0" oninput="calcSchengen()">
+      </div>
+      <div>
+        <label class="form-label">Planned trip length (days)</label>
+        <input type="number" class="input" id="schengen-planned" min="1" max="90" placeholder="14" oninput="calcSchengen()">
+      </div>
+    </div>
+    <div class="schengen-box" id="schengen-result" style="display:none">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-sm font-mono" style="color:var(--muted2)">Days used</span>
+        <span class="text-sm" id="sch-used-label">0 / 90 days</span>
+      </div>
+      <div class="schengen-track"><div class="schengen-fill" id="sch-bar" style="width:0%"></div></div>
+      <p id="sch-verdict" class="text-sm mt-2"></p>
+    </div>
+  </div>
+
+  <!-- AD SLOT 2 -->
+  <div class="mt-8 mb-6">
+    <div class="ad-label">Advertisement</div>
+    <div class="ad-slot ad-slot-responsive">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-REPLACE_WITH_PUB_ID" data-ad-slot="8888888888" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+
+  <!-- POPULAR ROUTES -->
+  <div class="mt-8 mb-8">
+    <h2 style="font-size:1.3rem;margin-bottom:16px">Popular passport routes</h2>
+    <div class="recent-grid" id="popular-routes"></div>
+  </div>
+
+  <div class="disclaimer mb-8">
+    <span>⚠</span>
+    <span>Visa requirements shown are for tourism purposes. Business, study, and work visas have different rules. Always verify with the official embassy of your destination country before booking travel.</span>
+  </div>
+
+  <!-- AD SLOT 3 -->
+  <div class="mb-6">
+    <div class="ad-label">Advertisement</div>
+    <div class="ad-slot ad-slot-leaderboard">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-REPLACE_WITH_PUB_ID" data-ad-slot="9999999999" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+
+</div>
+</main>
+<div id="footer-placeholder"></div>
+<script src="/js/shared.js"></script>
+<script>
+renderShared('calc');
+
+const REQ_CONFIG={
+  visa_free:{icon:'✅',cls:'visa-free',title:'Visa-free entry',desc:'No visa needed. You can enter with your passport only.',badgeCls:'badge-green'},
+  visa_on_arrival:{icon:'🛬',cls:'visa-on-arrival',title:'Visa on arrival',desc:'You can get your visa at the port of entry. Have cash for fees.',badgeCls:'badge-blue'},
+  esta:{icon:'📱',cls:'esta',title:'eTA / ESTA required',desc:'Apply online before travel. Usually approved within minutes.',badgeCls:'badge-warn'},
+  visa_required:{icon:'📋',cls:'visa-required',title:'Visa required',desc:'Apply at the embassy or consulate before traveling. Allow processing time.',badgeCls:'badge-red'}
+};
+
+let visaData=[];
+
+async function loadVisa(){
+  try{const r=await fetch('/data/visa-rules.json');visaData=await r.json();}catch(e){}
+}
+
+function checkVisa(){
+  const from=document.getElementById('from-select').value;
+  const to=document.getElementById('to-select').value;
+  const resBox=document.getElementById('result-box');
+  const noData=document.getElementById('no-data');
+  resBox.style.display='none';noData.style.display='none';
+  if(!from||!to)return;
+  if(from===to){resBox.className='result-box';resBox.style.display='block';document.getElementById('res-icon').textContent='🏠';document.getElementById('res-title').textContent='You\'re already home!';document.getElementById('res-desc').textContent='Destination is the same as your passport country.';document.getElementById('res-meta').innerHTML='';document.getElementById('res-notes').textContent='';return;}
+  const rule=visaData.find(r=>r.from===from&&r.to===to);
+  if(!rule){noData.style.display='block';return;}
+  const cfg=REQ_CONFIG[rule.requirement]||{icon:'❓',cls:'',title:'Unknown',desc:'No data available.',badgeCls:'badge-gray'};
+  resBox.className='result-box '+cfg.cls;
+  resBox.style.display='block';
+  document.getElementById('res-icon').textContent=cfg.icon;
+  document.getElementById('res-title').textContent=cfg.title;
+  document.getElementById('res-desc').textContent=cfg.desc;
+  let meta='';
+  if(rule.max_stay)meta+=`<div class="meta-item"><div class="meta-key">Max stay</div><div class="meta-val">${rule.max_stay} days</div></div>`;
+  meta+=`<div class="meta-item"><div class="meta-key">Last updated</div><div class="meta-val">${rule.updated||'2025'}</div></div>`;
+  document.getElementById('res-meta').innerHTML=meta;
+  document.getElementById('res-notes').textContent=rule.notes||'';
+  document.getElementById('res-country-link').href=`/country.html?c=${to}`;
+}
+
+function calcSchengen(){
+  const used=parseInt(document.getElementById('schengen-used').value)||0;
+  const planned=parseInt(document.getElementById('schengen-planned').value)||0;
+  const box=document.getElementById('schengen-result');
+  if(!used&&!planned){box.style.display='none';return;}
+  box.style.display='block';
+  const total=used+planned;
+  const pct=Math.min((total/90)*100,100);
+  document.getElementById('sch-bar').style.width=pct+'%';
+  document.getElementById('sch-bar').style.background=total>90?'var(--danger)':total>70?'var(--warn)':'var(--accent)';
+  document.getElementById('sch-used-label').textContent=`${total} / 90 days`;
+  const remaining=90-used;
+  let verdict='';
+  if(total>90)verdict=`⛔ Over the limit by ${total-90} days. You cannot make this trip without overstaying.`;
+  else if(total===90)verdict=`⚠️ This trip uses your full 90-day allowance. No further Schengen travel in this 180-day window.`;
+  else verdict=`✅ Allowed. After this trip you'll have ${90-total} days remaining in the current 180-day window.`;
+  document.getElementById('sch-verdict').textContent=verdict;
+}
+
+function renderPopular(){
+  const routes=[{from:'🇦🇪 UAE',to:'🇺🇸 US'},{from:'🇬🇧 UK',to:'🇺🇸 US'},{from:'🇮🇳 India',to:'🇦🇪 UAE'},{from:'🇺🇸 US',to:'🇦🇪 UAE'},{from:'🇩🇪 Germany',to:'🇺🇸 US'},{from:'🇨🇳 China',to:'🇯🇵 Japan'}];
+  const grid=document.getElementById('popular-routes');
+  grid.innerHTML=routes.map(r=>`<div class="recent-card" onclick="setRoute('${r.from.slice(2).trim()}','${r.to.slice(2).trim()}')"><span>${r.from}</span><span class="passport-arrow">→</span><span>${r.to}</span></div>`).join('');
+}
+
+function setRoute(from,to){
+  const fromMap={UAE:'AE',US:'US','United States':'US',UK:'GB','United Kingdom':'GB',Germany:'DE',India:'IN',China:'CN',Japan:'JP'};
+  const f=document.getElementById('from-select');
+  const t=document.getElementById('to-select');
+  const fc=fromMap[from];const tc=fromMap[to];
+  if(fc&&f.querySelector(`option[value="${fc}"]`)){f.value=fc;}
+  if(tc&&t.querySelector(`option[value="${tc}"]`)){t.value=tc;}
+  checkVisa();
+}
+
+document.addEventListener('DOMContentLoaded',async()=>{
+  await loadVisa();
+  renderPopular();
+  const p=new URLSearchParams(window.location.search);
+  if(p.get('from'))document.getElementById('from-select').value=p.get('from');
+  if(p.get('to'))document.getElementById('to-select').value=p.get('to');
+  if(p.get('from')&&p.get('to'))checkVisa();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block API routes from indexing
+Disallow: /api/
+
+# Sitemap declaration
+Sitemap: https://visaradar24.com/sitemap.xml

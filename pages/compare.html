@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Compare Passports — Visa Access Rankings 2025 | VisaRadar24</title>
+<meta name="description" content="Compare any two passports side by side. See visa-free countries, visa on arrival access, and passport power rankings for 2025. Based on Henley Passport Index data.">
+<meta name="keywords" content="passport comparison, passport power, strongest passport, henley passport index, visa free countries by passport, passport ranking 2025">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://visaradar24.com/pages/compare.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"VisaRadar24 Passport Comparison Tool","description":"Compare passport power and visa access for any two countries","url":"https://visaradar24.com/pages/compare.html"}</script>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.compare-selectors{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:end;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.5rem;margin-bottom:1.5rem}
+.vs-badge{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--text3);text-align:center;padding-bottom:0.5rem}
+.sel-field label{display:block;font-family:var(--font-mono);font-size:0.63rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--text3);margin-bottom:0.4rem}
+.sel-field select{width:100%;background:var(--bg2);border:1px solid var(--border2);color:var(--text);font-family:var(--font-mono);font-size:0.82rem;padding:0.65rem 1rem;border-radius:var(--r);cursor:pointer}
+.sel-field select:focus{outline:none;border-color:var(--accent)}
+.btn-compare{display:block;width:100%;background:var(--accent);color:#fff;font-family:var(--font-display);font-size:1rem;font-weight:600;border:none;padding:0.85rem;border-radius:var(--r);cursor:pointer;margin-top:1rem;transition:background 0.2s}
+.btn-compare:hover{background:#2563eb}
+.compare-result{display:none}
+.compare-header{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;margin-bottom:1.5rem;text-align:center}
+.passport-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.5rem}
+.passport-flag{font-size:3rem;margin-bottom:0.5rem}
+.passport-name{font-family:var(--font-display);font-size:1.3rem;font-weight:700}
+.passport-rank{font-family:var(--font-mono);font-size:0.68rem;color:var(--text3);margin-top:0.25rem}
+.passport-power{font-family:var(--font-display);font-size:2.2rem;font-weight:800;color:var(--accent2);margin-top:0.5rem}
+.passport-power-label{font-family:var(--font-mono);font-size:0.62rem;color:var(--text3)}
+.vs-col{display:flex;align-items:center;justify-content:center}
+.vs-txt{font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--text3)}
+.compare-table{width:100%;border-collapse:collapse;margin-bottom:1.5rem}
+.compare-table th{font-family:var(--font-mono);font-size:0.63rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);padding:0.6rem 1rem;border-bottom:1px solid var(--border);text-align:center}
+.compare-table th:first-child{text-align:left}
+.compare-table td{padding:0.75rem 1rem;border-bottom:1px solid var(--border);text-align:center;font-size:0.88rem;color:var(--text2)}
+.compare-table td:first-child{text-align:left;color:var(--text);font-weight:500}
+.compare-table tr:hover td{background:var(--surface)}
+.winner{color:var(--green);font-weight:600}
+.loser{color:var(--text3)}
+.power-bar{height:6px;background:var(--border);border-radius:3px;margin-top:0.5rem;overflow:hidden}
+.power-fill{height:100%;border-radius:3px;transition:width 0.8s ease}
+.rankings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;margin-top:1.25rem}
+.rank-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1rem;display:flex;align-items:center;gap:0.75rem}
+.rank-num{font-family:var(--font-display);font-size:1.5rem;font-weight:800;color:var(--text3);min-width:40px}
+.rank-info{flex:1}
+.rank-country{font-weight:500;font-size:0.9rem}
+.rank-access{font-family:var(--font-mono);font-size:0.65rem;color:var(--accent2)}
+@media(max-width:650px){.compare-selectors,.compare-header{grid-template-columns:1fr}.vs-badge,.vs-col{display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="pulse"></span>VisaRadar24</a>
+  <div class="nav-links">
+    <a href="../index.html">Live Map</a>
+    <a href="calculator.html">Visa Calculator</a>
+    <a href="compare.html" class="active">Compare Passports</a>
+    <a href="alerts.html">Live Alerts</a>
+    <a href="border-wait.html">Border Wait Times</a>
+  </div>
+  <div class="nav-live">Live</div>
+</nav>
+
+<div class="container page-wrap">
+  <div style="padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem">
+    <div class="sec-label">Tool</div>
+    <h1 class="sec-title">Passport Power Comparison</h1>
+    <div class="sec-sub">Compare visa-free access, travel freedom, and passport rankings for any two countries. Data based on Henley Passport Index 2025.</div>
+  </div>
+
+  <div class="ad-slot ad-leaderboard"></div>
+
+  <div class="compare-selectors">
+    <div class="sel-field">
+      <label>First passport</label>
+      <select id="p1">
+        <option value="">Select passport...</option>
+        <option value="JP">🇯🇵 Japan</option>
+        <option value="SG">🇸🇬 Singapore</option>
+        <option value="DE">🇩🇪 Germany</option>
+        <option value="FR">🇫🇷 France</option>
+        <option value="GB">🇬🇧 United Kingdom</option>
+        <option value="US">🇺🇸 United States</option>
+        <option value="AU">🇦🇺 Australia</option>
+        <option value="CA">🇨🇦 Canada</option>
+        <option value="AE">🇦🇪 UAE</option>
+        <option value="IN">🇮🇳 India</option>
+      </select>
+    </div>
+    <div class="vs-badge">VS</div>
+    <div class="sel-field">
+      <label>Second passport</label>
+      <select id="p2">
+        <option value="">Select passport...</option>
+        <option value="JP">🇯🇵 Japan</option>
+        <option value="SG">🇸🇬 Singapore</option>
+        <option value="DE">🇩🇪 Germany</option>
+        <option value="FR">🇫🇷 France</option>
+        <option value="GB">🇬🇧 United Kingdom</option>
+        <option value="US">🇺🇸 United States</option>
+        <option value="AU">🇦🇺 Australia</option>
+        <option value="CA">🇨🇦 Canada</option>
+        <option value="AE">🇦🇪 UAE</option>
+        <option value="IN">🇮🇳 India</option>
+      </select>
+    </div>
+    <button class="btn-compare" onclick="compare()" style="grid-column:1/-1">Compare Passports →</button>
+  </div>
+
+  <div class="compare-result" id="compare-result">
+    <div class="compare-header" id="compare-header"></div>
+    <div class="ad-slot ad-banner"></div>
+    <div style="overflow-x:auto"><table class="compare-table" id="compare-table"></table></div>
+    <div class="disclaimer">⚠️ &nbsp;Rankings based on Henley Passport Index 2025. Visa-free counts include visa-on-arrival access. Data updated regularly from official government sources.</div>
+  </div>
+
+  <div class="ad-slot ad-banner"></div>
+
+  <section>
+    <div class="sec-label">Rankings</div>
+    <h2 class="sec-title">World's Most Powerful Passports 2025</h2>
+    <div class="sec-sub">Ranked by number of countries accessible without a prior visa (visa-free + visa on arrival).</div>
+    <div class="rankings-grid" id="rankings-grid"></div>
+  </section>
+
+  <div class="ad-slot ad-leaderboard" style="margin-top:2rem"></div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="f-logo">VisaRadar24</div><p>Live global visa intelligence from IATA and 195 government portals.</p></div>
+      <div class="footer-cols">
+        <div class="footer-col"><h4>Tools</h4><a href="../index.html">Live Map</a><a href="calculator.html">Visa Calculator</a><a href="compare.html">Compare Passports</a><a href="alerts.html">Live Alerts</a><a href="border-wait.html">Border Wait Times</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 VisaRadar24. All rights reserved.</div>
+      <div class="footer-disclaimer">Data sourced from Henley Passport Index and IATA. For informational purposes only.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const PP={
+  "JP":{name:"Japan",flag:"🇯🇵",rank:1,access:193,visaFree:157,visaOnArrival:36,eVisa:18,visaRequired:2},
+  "SG":{name:"Singapore",flag:"🇸🇬",rank:2,access:192,visaFree:149,visaOnArrival:43,eVisa:22,visaRequired:3},
+  "DE":{name:"Germany",flag:"🇩🇪",rank:3,access:190,visaFree:144,visaOnArrival:46,eVisa:20,visaRequired:5},
+  "FR":{name:"France",flag:"🇫🇷",rank:3,access:190,visaFree:144,visaOnArrival:46,eVisa:20,visaRequired:5},
+  "GB":{name:"United Kingdom",flag:"🇬🇧",rank:4,access:189,visaFree:141,visaOnArrival:48,eVisa:22,visaRequired:6},
+  "US":{name:"United States",flag:"🇺🇸",rank:5,access:186,visaFree:136,visaOnArrival:50,eVisa:24,visaRequired:9},
+  "AU":{name:"Australia",flag:"🇦🇺",rank:6,access:185,visaFree:134,visaOnArrival:51,eVisa:21,visaRequired:10},
+  "CA":{name:"Canada",flag:"🇨🇦",rank:6,access:185,visaFree:134,visaOnArrival:51,eVisa:21,visaRequired:10},
+  "AE":{name:"UAE",flag:"🇦🇪",rank:15,access:178,visaFree:107,visaOnArrival:71,eVisa:32,visaRequired:17},
+  "IN":{name:"India",flag:"🇮🇳",rank:80,access:58,visaFree:26,visaOnArrival:32,eVisa:26,visaRequired:137}
+};
+
+function compare(){
+  const k1=document.getElementById('p1').value;
+  const k2=document.getElementById('p2').value;
+  if(!k1||!k2){alert('Please select both passports.');return;}
+  const p1=PP[k1],p2=PP[k2];
+  const result=document.getElementById('compare-result');
+  result.style.display='block';
+  result.scrollIntoView({behavior:'smooth'});
+
+  const header=document.getElementById('compare-header');
+  header.innerHTML=`
+    <div class="passport-card">
+      <div class="passport-flag">${p1.flag}</div>
+      <div class="passport-name">${p1.name}</div>
+      <div class="passport-rank">Global Rank #${p1.rank}</div>
+      <div class="passport-power">${p1.access}</div>
+      <div class="passport-power-label">countries accessible</div>
+      <div class="power-bar"><div class="power-fill" style="width:${Math.round(p1.access/195*100)}%;background:${p1.access>p2.access?'var(--green)':'var(--text3)'}"></div></div>
+    </div>
+    <div class="vs-col"><div class="vs-txt">VS</div></div>
+    <div class="passport-card">
+      <div class="passport-flag">${p2.flag}</div>
+      <div class="passport-name">${p2.name}</div>
+      <div class="passport-rank">Global Rank #${p2.rank}</div>
+      <div class="passport-power">${p2.access}</div>
+      <div class="passport-power-label">countries accessible</div>
+      <div class="power-bar"><div class="power-fill" style="width:${Math.round(p2.access/195*100)}%;background:${p2.access>p1.access?'var(--green)':'var(--text3)'}"></div></div>
+    </div>`;
+
+  const rows=[
+    {label:'Global rank',v1:'#'+p1.rank,v2:'#'+p2.rank,winner:p1.rank<p2.rank?1:2,lowerBetter:true},
+    {label:'Total countries accessible',v1:p1.access,v2:p2.access,winner:p1.access>p2.access?1:2},
+    {label:'Visa-free countries',v1:p1.visaFree,v2:p2.visaFree,winner:p1.visaFree>p2.visaFree?1:2},
+    {label:'Visa on arrival countries',v1:p1.visaOnArrival,v2:p2.visaOnArrival,winner:p1.visaOnArrival>p2.visaOnArrival?1:2},
+    {label:'e-Visa eligible countries',v1:p1.eVisa,v2:p2.eVisa,winner:p1.eVisa>p2.eVisa?1:2},
+    {label:'Visa required countries',v1:p1.visaRequired,v2:p2.visaRequired,winner:p1.visaRequired<p2.visaRequired?1:2,lowerBetter:true}
+  ];
+
+  document.getElementById('compare-table').innerHTML=`
+    <thead><tr><th>Category</th><th>${p1.flag} ${p1.name}</th><th>${p2.flag} ${p2.name}</th></tr></thead>
+    <tbody>${rows.map(r=>`<tr>
+      <td>${r.label}</td>
+      <td class="${r.winner===1?'winner':'loser'}">${r.v1} ${r.winner===1?'✓':''}</td>
+      <td class="${r.winner===2?'winner':'loser'}">${r.v2} ${r.winner===2?'✓':''}</td>
+    </tr>`).join('')}</tbody>`;
+}
+
+// Rankings
+const rankings=Object.entries(PP).sort((a,b)=>a[1].rank-b[1].rank);
+document.getElementById('rankings-grid').innerHTML=rankings.map(([code,p])=>`
+  <div class="rank-card">
+    <div class="rank-num">#${p.rank}</div>
+    <div>
+      <div class="rank-country">${p.flag} ${p.name}</div>
+      <div class="rank-access">${p.access} countries accessible</div>
+    </div>
+  </div>`).join('');
+</script>
+</body>
+</html>

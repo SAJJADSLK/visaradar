@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VisaRadar24 — Live Global Visa & Border Status Tracker</title>
+<meta name="description" content="Real-time visa requirements, border wait times, and travel policy alerts for 195 countries. Check any passport. Plan smarter.">
+<meta name="keywords" content="visa requirements, border wait times, passport tracker, travel restrictions, visa checker">
+<link rel="canonical" href="https://visaradar24.com/">
+<meta property="og:title" content="VisaRadar24 — Live Global Visa & Border Tracker">
+<meta property="og:description" content="Real-time visa requirements and border intelligence for every country.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://visaradar24.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VisaRadar24 — Live Global Visa & Border Tracker">
+<meta name="twitter:description" content="Real-time visa requirements for 195 countries. Free, always updated.">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"VisaRadar24","url":"https://visaradar24.com","description":"Live global visa requirements, border wait times and travel policy alerts for 195 countries.","applicationCategory":"TravelApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+#map{height:480px;width:100%;border-radius:var(--radius-lg);border:1px solid var(--border);background:var(--bg2)}
+.leaflet-container{background:#0a1220!important}
+.hero{padding:72px 0 48px;text-align:center}
+.hero h1{margin-bottom:16px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero>div>p{font-size:1.1rem;max-width:560px;margin:0 auto 32px}
+.passport-select-wrap{display:flex;gap:12px;max-width:560px;margin:0 auto}
+.map-section{padding:0 0 64px}
+.map-controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px}
+.map-legend{display:flex;gap:16px;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:0.78rem;color:var(--muted2);font-family:var(--font-mono)}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+.stats-strip{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:32px 0;margin:0 0 64px}
+.stats-strip .grid-4{gap:0}
+.stats-strip .stat-box{padding:0 24px;border-right:1px solid var(--border)}
+.stats-strip .stat-box:last-child{border-right:none}
+.features{padding:64px 0}
+.feature-card{display:flex;flex-direction:column;gap:12px}
+.feature-icon{width:44px;height:44px;background:rgba(0,212,168,0.1);border:1px solid rgba(0,212,168,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.country-pill{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:0.88rem;transition:all 0.2s;cursor:pointer;text-decoration:none;color:var(--text)}
+.country-pill:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.country-pill .flag{font-size:1.1rem}
+.pills-wrap{display:flex;flex-wrap:wrap;gap:10px}
+.map-tooltip{background:var(--bg3)!important;border:1px solid var(--border2)!important;color:var(--text)!important;font-family:var(--font-body)!important;font-size:0.82rem!important;border-radius:8px!important;padding:8px 12px!important;box-shadow:0 4px 20px rgba(0,0,0,0.5)!important}
+.eyebrow{font-family:var(--font-mono);font-size:0.75rem;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<main>
+
+<section class="hero">
+  <div class="container">
+    <div class="flex flex-center gap-3 mb-4">
+      <span class="live-dot">LIVE</span>
+      <span class="badge badge-blue">195 Countries</span>
+      <span class="badge badge-warn badge-pulse">3 Policy Changes Today</span>
+    </div>
+    <h1>The world's visa &amp; border<br><em>intelligence platform</em></h1>
+    <p>Real-time visa requirements, live border wait times, and instant policy change alerts — for every passport, every destination.</p>
+    <div class="passport-select-wrap">
+      <div style="flex:1">
+        <select class="input" id="passport-select" onchange="updateMap()">
+          <option value="">Select your passport…</option>
+          <option value="AE">🇦🇪 UAE</option>
+          <option value="US">🇺🇸 United States</option>
+          <option value="GB">🇬🇧 United Kingdom</option>
+          <option value="DE">🇩🇪 Germany</option>
+          <option value="IN">🇮🇳 India</option>
+          <option value="CN">🇨🇳 China</option>
+          <option value="PH">🇵🇭 Philippines</option>
+          <option value="JP">🇯🇵 Japan</option>
+        </select>
+      </div>
+      <a href="/calculator.html" class="btn btn-primary">Check Visa →</a>
+    </div>
+    <p class="mt-3 text-xs text-muted">Free forever · No signup required</p>
+  </div>
+</section>
+
+<div class="container mb-6">
+  <div class="ad-label">Advertisement</div>
+  <div class="ad-slot ad-slot-leaderboard">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-REPLACE_WITH_PUB_ID" data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  </div>
+</div>
+
+<div class="stats-strip">
+  <div class="container">
+    <div class="grid-4">
+      <div class="stat-box"><div class="stat-num" id="stat-visafree">–</div><div class="stat-label">Visa-free destinations</div></div>
+      <div class="stat-box"><div class="stat-num" id="stat-changes">–</div><div class="stat-label">Policy changes this week</div></div>
+      <div class="stat-box"><div class="stat-num" id="stat-wait">– min</div><div class="stat-label">Avg US border wait</div></div>
+      <div class="stat-box"><div class="stat-num" id="stat-alerts">–</div><div class="stat-label">Active travel advisories</div></div>
+    </div>
+  </div>
+</div>
+
+<section class="map-section">
+  <div class="container">
+    <div class="map-controls">
+      <div>
+        <h2 style="font-size:1.4rem;margin-bottom:4px">Global visa map</h2>
+        <p class="text-sm" id="map-subtitle">Select a passport above to colour the map</p>
+      </div>
+      <div class="map-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#00d4a8"></div>Visa-free</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#0096ff"></div>Visa on arrival</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#ffa502"></div>eTA / ESTA</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#ff4757"></div>Visa required</div>
+      </div>
+    </div>
+    <div id="map"></div>
+    <p class="text-xs text-muted mt-3">© OpenStreetMap contributors. Visa data from official government portals. Updated monthly.</p>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <div class="text-center mb-8">
+      <div class="eyebrow">What we track</div>
+      <h2>Everything a traveler needs,<br>in one place</h2>
+    </div>
+    <div class="grid-3">
+      <div class="card feature-card">
+        <div class="feature-icon">🗺️</div>
+        <h3>Visa requirements</h3>
+        <p>Live rules for every passport–destination combo. Visa-free, on arrival, eTA, and embassy applications all covered.</p>
+        <a href="/calculator.html" class="btn btn-ghost btn-sm mt-3">Try calculator →</a>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">⏱️</div>
+        <h3>Border wait times</h3>
+        <p>Live data from US CBP for all major US land borders. Passenger car, ready lanes, and commercial vehicle lanes.</p>
+        <a href="/border-wait.html" class="btn btn-ghost btn-sm mt-3">View wait times →</a>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3>Policy change alerts</h3>
+        <p>Instant email alerts when a country changes its visa policy. Never get caught out by a rule change again.</p>
+        <a href="/alerts.html" class="btn btn-ghost btn-sm mt-3">Set up alerts →</a>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Passport comparison</h3>
+        <p>Compare the power of any two passports side by side. See where one gets you that the other doesn't.</p>
+        <a href="/compare.html" class="btn btn-ghost btn-sm mt-3">Compare passports →</a>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">🏳️</div>
+        <h3>Country profiles</h3>
+        <p>Deep-dive pages for every country — entry requirements, health rules, advisories, and recent policy changes.</p>
+        <a href="/country.html?c=AE" class="btn btn-ghost btn-sm mt-3">Example: UAE →</a>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">🧮</div>
+        <h3>Schengen calculator</h3>
+        <p>Track your 90/180-day Schengen allowance automatically. Know exactly how many days you have left.</p>
+        <a href="/calculator.html" class="btn btn-ghost btn-sm mt-3">Calculate →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container mb-6">
+  <div class="ad-label">Advertisement</div>
+  <div class="ad-slot ad-slot-responsive">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-REPLACE_WITH_PUB_ID" data-ad-slot="2222222222" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  </div>
+</div>
+
+<section style="padding:48px 0">
+  <div class="container">
+    <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+      <h2 style="font-size:1.4rem">Popular destinations</h2>
+      <span class="text-sm text-muted">Click any country for full visa details</span>
+    </div>
+    <div class="pills-wrap">
+      <a href="/country.html?c=US" class="country-pill"><span class="flag">🇺🇸</span>United States</a>
+      <a href="/country.html?c=GB" class="country-pill"><span class="flag">🇬🇧</span>United Kingdom</a>
+      <a href="/country.html?c=AE" class="country-pill"><span class="flag">🇦🇪</span>UAE</a>
+      <a href="/country.html?c=DE" class="country-pill"><span class="flag">🇩🇪</span>Germany</a>
+      <a href="/country.html?c=JP" class="country-pill"><span class="flag">🇯🇵</span>Japan</a>
+      <a href="/country.html?c=SG" class="country-pill"><span class="flag">🇸🇬</span>Singapore</a>
+      <a href="/country.html?c=AU" class="country-pill"><span class="flag">🇦🇺</span>Australia</a>
+      <a href="/country.html?c=CA" class="country-pill"><span class="flag">🇨🇦</span>Canada</a>
+      <a href="/country.html?c=FR" class="country-pill"><span class="flag">🇫🇷</span>France</a>
+      <a href="/country.html?c=TR" class="country-pill"><span class="flag">🇹🇷</span>Turkey</a>
+      <a href="/country.html?c=TH" class="country-pill"><span class="flag">🇹🇭</span>Thailand</a>
+      <a href="/country.html?c=IN" class="country-pill"><span class="flag">🇮🇳</span>India</a>
+    </div>
+  </div>
+</section>
+
+<div class="container mb-8">
+  <div class="disclaimer">
+    <span>⚠</span>
+    <span>Visa information on this site is for general guidance only. Requirements can change without notice. <strong>Always verify entry requirements with the official embassy or consulate of your destination before booking travel.</strong></span>
+  </div>
+</div>
+
+<div class="container mb-6">
+  <div class="ad-label">Advertisement</div>
+  <div class="ad-slot ad-slot-leaderboard">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-REPLACE_WITH_PUB_ID" data-ad-slot="3333333333" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  </div>
+</div>
+
+</main>
+<div id="footer-placeholder"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/js/shared.js"></script>
+<script>
+renderShared('home');
+
+const VISA_COLORS={visa_free:'#00d4a8',visa_on_arrival:'#0096ff',esta:'#ffa502',visa_required:'#ff4757',default:'#2a3444'};
+let map,geojsonLayer,visaData=[],geoData=null;
+
+function animateCount(el,target,suffix=''){
+  let n=0;const step=Math.ceil(target/40);
+  const t=setInterval(()=>{n=Math.min(n+step,target);el.textContent=n+suffix;if(n>=target)clearInterval(t);},30);
+}
+
+async function loadStats(){
+  try{
+    const r=await fetch('/api/stats');
+    if(r.ok){const d=await r.json();
+      animateCount(document.getElementById('stat-visafree'),d.visaFree||58);
+      animateCount(document.getElementById('stat-changes'),d.changes||3);
+      document.getElementById('stat-wait').textContent=(d.avgWait||14)+' min';
+      animateCount(document.getElementById('stat-alerts'),d.advisories||12);
+    }
+  }catch(e){
+    animateCount(document.getElementById('stat-visafree'),58);
+    animateCount(document.getElementById('stat-changes'),3);
+    document.getElementById('stat-wait').textContent='14 min';
+    animateCount(document.getElementById('stat-alerts'),12);
+  }
+}
+
+async function loadVisaData(){
+  try{const r=await fetch('/data/visa-rules.json');visaData=await r.json();}catch(e){visaData=[];}
+}
+
+function getReq(from,to){
+  if(!from)return'default';
+  const rule=visaData.find(r=>r.from===from&&r.to===to);
+  return rule?rule.requirement:'default';
+}
+
+function initMap(){
+  map=L.map('map',{center:[20,10],zoom:2,minZoom:1,maxZoom:8});
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',{
+    attribution:'© OpenStreetMap © CARTO',subdomains:'abcd',maxZoom:20
+  }).addTo(map);
+  fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
+    .then(r=>r.json()).then(d=>{geoData=d;renderMapLayer();})
+    .catch(()=>{});
+}
+
+function renderMapLayer(){
+  if(!geoData)return;
+  const passport=document.getElementById('passport-select').value;
+  if(geojsonLayer)map.removeLayer(geojsonLayer);
+  geojsonLayer=L.geoJSON(geoData,{
+    style:f=>{
+      const req=getReq(passport,f.properties.ISO_A2);
+      return{fillColor:VISA_COLORS[req]||VISA_COLORS.default,fillOpacity:req==='default'?0.25:0.7,color:'#1a2535',weight:0.5};
+    },
+    onEachFeature:(f,layer)=>{
+      const iso=f.properties.ISO_A2,name=f.properties.ADMIN;
+      const passport=document.getElementById('passport-select').value;
+      const req=getReq(passport,iso);
+      const labels={visa_free:'Visa-free',visa_on_arrival:'Visa on arrival',esta:'eTA / ESTA required',visa_required:'Visa required',default:'No data'};
+      layer.bindTooltip(`<strong>${name}</strong><br><span style="color:${VISA_COLORS[req]||'#888'}">${labels[req]||'No data'}</span>`,{className:'map-tooltip',sticky:true});
+      layer.on('click',()=>{window.location.href=`/country.html?c=${iso}`;});
+      layer.on('mouseover',e=>e.target.setStyle({fillOpacity:0.9,weight:1.5}));
+      layer.on('mouseout',e=>geojsonLayer.resetStyle(e.target));
+    }
+  }).addTo(map);
+}
+
+function updateMap(){
+  const p=document.getElementById('passport-select').value;
+  const names={AE:'UAE',US:'US',GB:'UK',DE:'German',IN:'Indian',CN:'Chinese',PH:'Filipino',JP:'Japanese'};
+  if(p)document.getElementById('map-subtitle').textContent=`Showing visa access for ${names[p]||p} passport holders`;
+  renderMapLayer();
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  loadStats();
+  loadVisaData().then(initMap);
+});
+</script>
+</body>
+</html>

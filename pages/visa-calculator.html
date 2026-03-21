@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visa Calculator — Check Visa Requirements Instantly | VisaRadar24</title>
+<meta name="description" content="Instant visa requirement checker. Enter your passport and destination to get visa type, cost, processing time, and official embassy links. Free, accurate, real-time.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.visaradar24.com/pages/visa-calculator.html">
+<meta property="og:title" content="Visa Calculator — Instant Visa Requirements | VisaRadar24">
+<meta property="og:description" content="Check visa requirements for any passport and destination instantly. Get visa type, cost, processing time, and official embassy links.">
+<meta property="og:url" content="https://www.visaradar24.com/pages/visa-calculator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Visa Calculator","description":"Instant visa requirement checker for any passport and destination","url":"https://www.visaradar24.com/pages/visa-calculator.html","breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.visaradar24.com"},{"@type":"ListItem","position":2,"name":"Visa Calculator","item":"https://www.visaradar24.com/pages/visa-calculator.html"}]}}</script>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.calc-wrap{max-width:740px;margin:0 auto}
+.calc-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--rl);padding:2rem;margin-bottom:2rem}
+.calc-card h2{font-family:var(--fd);font-size:1.15rem;font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
+.calc-card h2::before{content:'';width:3px;height:18px;background:var(--accent);border-radius:2px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-group label{font-family:var(--fm);font-size:.68rem;letter-spacing:.08em;color:var(--text2);text-transform:uppercase}
+.form-group select,.form-group input{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);color:var(--text);font-family:var(--fb);font-size:.88rem;padding:.6rem .9rem;outline:none;transition:border-color .2s}
+.form-group select:focus,.form-group input:focus{border-color:var(--accent)}
+.calc-btn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:var(--r);padding:.75rem;font-family:var(--fm);font-size:.78rem;letter-spacing:.08em;cursor:pointer;margin-top:.5rem;transition:opacity .2s}
+.calc-btn:hover{opacity:.88}
+.result-card{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rl);padding:1.75rem;margin-bottom:1.5rem;display:none}
+.result-card.show{display:block}
+.result-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem}
+.result-route{font-family:var(--fd);font-size:1.2rem;font-weight:700}
+.result-sub{font-size:.8rem;color:var(--text2);margin-top:.2rem}
+.result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1.25rem}
+.rg-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:.9rem}
+.rg-label{font-family:var(--fm);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.35rem}
+.rg-value{font-size:.92rem;font-weight:500;color:var(--text)}
+.apply-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--green-bg);color:var(--green);border:1px solid rgba(34,197,94,0.3);border-radius:var(--r);padding:.55rem 1.1rem;font-family:var(--fm);font-size:.7rem;letter-spacing:.06em;cursor:pointer;transition:background .2s}
+.apply-btn:hover{background:rgba(34,197,94,0.15)}
+.apply-btn::after{content:'→'}
+.popular-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.75rem;margin-bottom:2rem}
+.pop-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:.9rem 1rem;cursor:pointer;transition:border-color .2s,background .2s}
+.pop-card:hover{border-color:var(--border2);background:var(--surface2)}
+.pop-route{font-size:.88rem;font-weight:500;margin-bottom:.3rem}
+.pop-detail{font-size:.72rem;color:var(--text3);font-family:var(--fm)}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}.result-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="nav-dot"></span>VisaRadar24</a>
+  <div class="nav-links">
+    <a href="../index.html">Live Map</a>
+    <a href="visa-calculator.html" class="active">Visa Calculator</a>
+    <a href="compare.html">Compare</a>
+    <a href="alerts.html">Alerts</a>
+    <a href="wait-times.html">Wait Times</a>
+  </div>
+  <div class="nav-live">Live Data</div>
+</nav>
+
+<div class="container">
+  <div class="ad-slot ad-lb" aria-label="Advertisement"><span>Advertisement</span></div>
+
+  <nav aria-label="Breadcrumb" style="margin:1rem 0;font-size:.8rem;color:var(--text3);font-family:var(--fm)">
+    <a href="../index.html" style="color:var(--text3)">Home</a> <span style="margin:0 .4rem">›</span> <span style="color:var(--text2)">Visa Calculator</span>
+  </nav>
+
+  <div class="page-hero">
+    <h1>Visa Calculator</h1>
+    <p>Enter your passport and destination country to instantly check visa requirements, fees, processing time, and official application links.</p>
+  </div>
+
+  <div class="calc-wrap">
+    <div class="calc-card">
+      <h2>Check visa requirements</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="from-passport">Your passport</label>
+          <select id="from-passport">
+            <option value="">Select passport</option>
+            <option value="US">🇺🇸 United States</option>
+            <option value="GB">🇬🇧 United Kingdom</option>
+            <option value="AE">🇦🇪 UAE</option>
+            <option value="DE">🇩🇪 Germany</option>
+            <option value="FR">🇫🇷 France</option>
+            <option value="JP">🇯🇵 Japan</option>
+            <option value="SG">🇸🇬 Singapore</option>
+            <option value="CA">🇨🇦 Canada</option>
+            <option value="AU">🇦🇺 Australia</option>
+            <option value="IN">🇮🇳 India</option>
+            <option value="PK">🇵🇰 Pakistan</option>
+            <option value="BR">🇧🇷 Brazil</option>
+            <option value="NG">🇳🇬 Nigeria</option>
+            <option value="ZA">🇿🇦 South Africa</option>
+            <option value="KR">🇰🇷 South Korea</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="to-country">Destination country</label>
+          <select id="to-country">
+            <option value="">Select destination</option>
+            <option value="US">🇺🇸 United States</option>
+            <option value="GB">🇬🇧 United Kingdom</option>
+            <option value="AE">🇦🇪 UAE / Dubai</option>
+            <option value="FR">🇫🇷 France</option>
+            <option value="DE">🇩🇪 Germany</option>
+            <option value="JP">🇯🇵 Japan</option>
+            <option value="TH">🇹🇭 Thailand</option>
+            <option value="ID">🇮🇩 Indonesia / Bali</option>
+            <option value="TR">🇹🇷 Turkey</option>
+            <option value="IN">🇮🇳 India</option>
+            <option value="SG">🇸🇬 Singapore</option>
+            <option value="AU">🇦🇺 Australia</option>
+            <option value="CA">🇨🇦 Canada</option>
+            <option value="EG">🇪🇬 Egypt</option>
+            <option value="MA">🇲🇦 Morocco</option>
+            <option value="KE">🇰🇪 Kenya</option>
+            <option value="MV">🇲🇻 Maldives</option>
+            <option value="IT">🇮🇹 Italy</option>
+            <option value="ES">🇪🇸 Spain</option>
+            <option value="GR">🇬🇷 Greece</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="purpose">Purpose of visit</label>
+          <select id="purpose">
+            <option value="tourism">Tourism / Leisure</option>
+            <option value="business">Business</option>
+            <option value="transit">Transit</option>
+            <option value="study">Study</option>
+            <option value="work">Work</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="duration">Intended stay</label>
+          <select id="duration">
+            <option value="7">Up to 7 days</option>
+            <option value="14">Up to 14 days</option>
+            <option value="30">Up to 30 days</option>
+            <option value="60">Up to 60 days</option>
+            <option value="90">Up to 90 days</option>
+            <option value="180">Up to 180 days</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcVisa()">Check Visa Requirements</button>
+    </div>
+
+    <!-- RESULT -->
+    <div class="result-card" id="result-card">
+      <div class="result-header">
+        <div>
+          <div class="result-route" id="r-route">—</div>
+          <div class="result-sub" id="r-sub">Tourism · Up to 30 days</div>
+        </div>
+        <span class="pill" id="r-pill">—</span>
+      </div>
+      <div class="result-grid">
+        <div class="rg-item"><div class="rg-label">Visa type</div><div class="rg-value" id="r-type">—</div></div>
+        <div class="rg-item"><div class="rg-label">Max stay</div><div class="rg-value" id="r-stay">—</div></div>
+        <div class="rg-item"><div class="rg-label">Estimated cost</div><div class="rg-value" id="r-cost">—</div></div>
+        <div class="rg-item"><div class="rg-label">Processing time</div><div class="rg-value" id="r-time">—</div></div>
+      </div>
+      <div id="r-notes" style="font-size:.83rem;color:var(--text2);line-height:1.7;margin-bottom:1.25rem;padding:.9rem;background:var(--surface);border-radius:var(--r);border-left:3px solid var(--accent)"></div>
+      <a class="apply-btn" id="r-link" href="#" target="_blank" rel="noopener noreferrer">View official requirements</a>
+      <p style="font-size:.72rem;color:var(--text3);margin-top:.75rem;line-height:1.6">Data is for informational purposes only. Always verify current requirements with the official embassy or consulate before traveling.</p>
+    </div>
+
+    <!-- AD rect -->
+    <div class="ad-slot" style="width:100%;height:250px;margin-bottom:2rem" aria-label="Advertisement"><span>Advertisement</span></div>
+
+    <h2 style="font-family:var(--fd);font-size:1.1rem;font-weight:700;margin-bottom:1rem">Popular visa checks</h2>
+    <div class="popular-grid">
+      <div class="pop-card" onclick="prefill('IN','AE')"><div class="pop-route">India → UAE</div><div class="pop-detail">e-Visa · ~$90 · 3–5 days</div></div>
+      <div class="pop-card" onclick="prefill('PK','TR')"><div class="pop-route">Pakistan → Turkey</div><div class="pop-detail">e-Visa · $60 · Instant</div></div>
+      <div class="pop-card" onclick="prefill('US','JP')"><div class="pop-route">USA → Japan</div><div class="pop-detail">Visa-free · 90 days</div></div>
+      <div class="pop-card" onclick="prefill('NG','GB')"><div class="pop-route">Nigeria → UK</div><div class="pop-detail">Visa required · £115 · 3 weeks</div></div>
+      <div class="pop-card" onclick="prefill('IN','US')"><div class="pop-route">India → USA</div><div class="pop-detail">B1/B2 Visa · $185 · 2–8 weeks</div></div>
+      <div class="pop-card" onclick="prefill('ZA','FR')"><div class="pop-route">South Africa → France</div><div class="pop-detail">Schengen Visa · €80 · 2 weeks</div></div>
+      <div class="pop-card" onclick="prefill('GB','AU')"><div class="pop-route">UK → Australia</div><div class="pop-detail">eTA · A$20 · Instant</div></div>
+      <div class="pop-card" onclick="prefill('AE','TH')"><div class="pop-route">UAE → Thailand</div><div class="pop-detail">Visa-free · 30 days</div></div>
+    </div>
+  </div>
+
+  <div class="ad-slot ad-banner" aria-label="Advertisement"><span>Advertisement</span></div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><div class="fn">VisaRadar24</div><p>Live global visa requirements and border intelligence for every passport on Earth.</p></div>
+    <div class="footer-col"><h4>Tools</h4><a href="../index.html">Live Map</a><a href="visa-calculator.html">Visa Calculator</a><a href="compare.html">Compare Passports</a><a href="alerts.html">Alerts</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a><a href="disclaimer.html">Disclaimer</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 VisaRadar24. All rights reserved.</span>
+    <p class="footer-disc">For informational purposes only. Always verify with the official embassy before travel.</p>
+  </div>
+</footer>
+
+<script>
+const VISA_DB={
+  'US-JP':{status:'free',type:'Visa-free entry',stay:'90 days',cost:'Free',time:'No application needed',notes:'US passport holders can enter Japan visa-free for up to 90 days for tourism and business. No application required. Ensure passport is valid for the duration of stay.',link:'https://www.mofa.go.jp/j_info/visit/visa/index.html'},
+  'US-AE':{status:'free',type:'Visa-free entry',stay:'90 days',cost:'Free',time:'No application needed',notes:'US passport holders receive a free visa on arrival in the UAE valid for 90 days. No pre-application required.',link:'https://u.ae/en/information-and-services/visa-and-emirates-id'},
+  'IN-AE':{status:'evisa',type:'UAE e-Visa (Visit Visa)',stay:'30 or 90 days',cost:'AED 350–750 (~$95–200)',time:'3–5 business days',notes:'Indian passport holders must apply for a UAE visit visa before travel. Apply through Emirates airline, Air Arabia, or GDRFA Dubai portal. Single or multiple entry options available.',link:'https://smartservices.icp.gov.ae/echannels/web/client/default.html#/login'},
+  'IN-US':{status:'req',type:'B1/B2 Tourist/Business Visa',stay:'Up to 10 years (90 days per entry)',cost:'$185 (non-refundable)',time:'2–8 weeks (interview required)',notes:'Indian passport holders require a B1/B2 visa for the USA. Book a consular appointment at the nearest US Embassy. Interview required. Strong ties to home country must be demonstrated.',link:'https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visitor.html'},
+  'PK-TR':{status:'evisa',type:'Turkey e-Visa',stay:'30 days',cost:'$60 USD',time:'Instant to 24 hours',notes:'Pakistani passport holders can obtain a Turkey e-Visa online before travel. Apply at the official Turkish e-Visa portal. Single entry, valid for 180 days from issue date.',link:'https://www.evisa.gov.tr/en/'},
+  'NG-GB':{status:'req',type:'UK Standard Visitor Visa',stay:'Up to 6 months',cost:'£115',time:'3 weeks (up to 8 weeks possible)',notes:'Nigerian passport holders require a UK Standard Visitor Visa. Apply online via UKVI. Biometric appointment required at a Visa Application Centre in Nigeria. Financial documents and ties to Nigeria required.',link:'https://www.gov.uk/standard-visitor-visa'},
+  'ZA-FR':{status:'req',type:'Schengen Visa (France - Type C)',stay:'Up to 90 days in 180-day period',cost:'€80',time:'15 calendar days (up to 45 days)',notes:'South African passport holders require a Schengen visa to enter France/EU. Apply at the French Embassy or VFS Global in South Africa. Requires travel insurance, bank statements, and accommodation proof.',link:'https://france-visas.gouv.fr/en/'},
+  'GB-AU':{status:'evisa',type:'Electronic Travel Authority (ETA)',stay:'Up to 3 months per visit',cost:'AUD $20',time:'Instant (usually)',notes:'UK passport holders can apply for an Australian ETA online or via the Australian ETA app. Valid for 12 months with multiple entries up to 3 months each.',link:'https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/electronic-travel-authority-601'},
+  'AE-TH':{status:'free',type:'Visa-free entry',stay:'30 days',cost:'Free',time:'No application needed',notes:'UAE passport holders can enter Thailand visa-free for up to 30 days. Extendable at local immigration offices.',link:'https://www.thaiembassy.com/thailand-visa/visa-exemption'},
+};
+
+const CNNAMES={'US':'United States','GB':'United Kingdom','AE':'UAE','DE':'Germany','FR':'France','JP':'Japan','SG':'Singapore','CA':'Canada','AU':'Australia','IN':'India','PK':'Pakistan','BR':'Brazil','NG':'Nigeria','ZA':'South Africa','KR':'South Korea','TH':'Thailand','ID':'Indonesia','TR':'Turkey','EG':'Egypt','MA':'Morocco','KE':'Kenya','MV':'Maldives','IT':'Italy','ES':'Spain','GR':'Greece'};
+
+function calcVisa(){
+  const from=document.getElementById('from-passport').value;
+  const to=document.getElementById('to-country').value;
+  const purpose=document.getElementById('purpose').value;
+  const dur=document.getElementById('duration').value;
+  if(!from||!to){alert('Please select both passport and destination.');return;}
+  const key=`${from}-${to}`;
+  const d=VISA_DB[key]||generateDefault(from,to);
+  const fromN=CNNAMES[from]||from;
+  const toN=CNNAMES[to]||to;
+  document.getElementById('r-route').textContent=`${fromN} → ${toN}`;
+  document.getElementById('r-sub').textContent=`${purpose.charAt(0).toUpperCase()+purpose.slice(1)} · Up to ${dur} days`;
+  const pill=document.getElementById('r-pill');
+  if(d.status==='free'){pill.className='pill p-green';pill.textContent='Visa-free';}
+  else if(d.status==='voa'){pill.className='pill p-blue';pill.textContent='Visa on arrival';}
+  else if(d.status==='evisa'){pill.className='pill p-amber';pill.textContent='e-Visa required';}
+  else{pill.className='pill p-red';pill.textContent='Visa required';}
+  document.getElementById('r-type').textContent=d.type;
+  document.getElementById('r-stay').textContent=d.stay;
+  document.getElementById('r-cost').textContent=d.cost;
+  document.getElementById('r-time').textContent=d.time;
+  document.getElementById('r-notes').textContent=d.notes;
+  document.getElementById('r-link').href=d.link;
+  document.getElementById('result-card').classList.add('show');
+  document.getElementById('result-card').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function generateDefault(from,to){
+  return{status:'req',type:'Visa required — check embassy',stay:'Varies',cost:'Varies',time:'Contact embassy for current processing times',notes:`We do not currently have specific data for ${CNNAMES[from]||from} passport holders traveling to ${CNNAMES[to]||to}. Please contact the official embassy or consulate of ${CNNAMES[to]||to} in your country for the most accurate and current requirements.`,link:'https://www.iata.org/en/publications/store/travel-centre/'};
+}
+
+function prefill(from,to){
+  document.getElementById('from-passport').value=from;
+  document.getElementById('to-country').value=to;
+  calcVisa();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

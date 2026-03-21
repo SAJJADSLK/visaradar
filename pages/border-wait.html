@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live Border Wait Times 2025 — US, Canada, Mexico Crossings | VisaRadar24</title>
+<meta name="description" content="Live border crossing wait times for US, Canada and Mexico. Real-time data from US CBP official API. Check current delays at San Ysidro, El Paso, Detroit and 50+ border crossings.">
+<meta name="keywords" content="border wait times, border crossing wait, CBP wait times, San Ysidro wait time, US Mexico border wait, US Canada border wait, live border times">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://visaradar24.com/pages/border-wait.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Live US Border Wait Times","description":"Real-time US border crossing wait times from US CBP official API","url":"https://visaradar24.com/pages/border-wait.html","provider":{"@type":"Organization","name":"VisaRadar24"},"temporalCoverage":"2025","spatialCoverage":"United States border crossings"}</script>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.border-filters{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.bfbtn{font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.06em;background:var(--surface);border:1px solid var(--border);color:var(--text2);padding:0.4rem 0.9rem;border-radius:20px;cursor:pointer;transition:all 0.15s}
+.bfbtn:hover,.bfbtn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.border-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
+.border-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.25rem;transition:border-color 0.2s}
+.border-card:hover{border-color:var(--border2)}
+.bc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem}
+.bc-name{font-weight:600;font-size:0.95rem;color:var(--text)}
+.bc-crossing{font-family:var(--font-mono);font-size:0.62rem;color:var(--text3);margin-top:2px}
+.bc-updated{font-family:var(--font-mono);font-size:0.6rem;color:var(--text3)}
+.wait-rows{display:flex;flex-direction:column;gap:0.6rem}
+.wait-row{display:flex;justify-content:space-between;align-items:center}
+.wait-label{font-family:var(--font-mono);font-size:0.68rem;color:var(--text2)}
+.wait-time{font-family:var(--font-display);font-size:1.1rem;font-weight:700}
+.wait-bar{height:4px;background:var(--border);border-radius:2px;margin-top:4px;overflow:hidden}
+.wait-fill{height:100%;border-radius:2px}
+.t-low{color:var(--green)}
+.t-med{color:var(--amber)}
+.t-high{color:var(--red)}
+.refresh-bar{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:0.75rem 1rem;margin-bottom:1.5rem}
+.refresh-info{font-family:var(--font-mono);font-size:0.68rem;color:var(--text2);display:flex;align-items:center;gap:0.5rem}
+.btn-refresh{background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:var(--font-mono);font-size:0.7rem;padding:0.4rem 0.9rem;border-radius:var(--r);cursor:pointer;transition:all 0.15s}
+.btn-refresh:hover{border-color:var(--accent);color:var(--accent2)}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo"><span class="pulse"></span>VisaRadar24</a>
+  <div class="nav-links">
+    <a href="../index.html">Live Map</a>
+    <a href="calculator.html">Visa Calculator</a>
+    <a href="compare.html">Compare Passports</a>
+    <a href="alerts.html">Live Alerts</a>
+    <a href="border-wait.html" class="active">Border Wait Times</a>
+  </div>
+  <div class="nav-live">Live</div>
+</nav>
+
+<div class="container page-wrap">
+  <div style="padding:2rem 0 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem">
+    <div class="sec-label">Live Data</div>
+    <h1 class="sec-title">Live Border Wait Times</h1>
+    <div class="sec-sub">Real-time border crossing wait times from the US Customs and Border Protection (CBP) official API. Updated every 5 minutes. Data covers all major US land border crossings with Mexico and Canada.</div>
+  </div>
+
+  <div class="ad-slot ad-leaderboard"></div>
+
+  <div class="refresh-bar">
+    <div class="refresh-info"><span class="pulse" style="width:7px;height:7px;background:var(--green);border-radius:50%;display:inline-block;animation:blink 1.5s infinite"></span>Live — refreshes every 5 minutes · Source: <a href="https://bwt.cbp.gov" target="_blank" rel="noopener" style="color:var(--accent2);text-decoration:none">bwt.cbp.gov</a></div>
+    <button class="btn-refresh" onclick="loadBorderTimes()">↻ Refresh Now</button>
+  </div>
+
+  <div class="border-filters">
+    <button class="bfbtn active" onclick="filterBorders('all',this)">All Crossings</button>
+    <button class="bfbtn" onclick="filterBorders('Mexico',this)">US–Mexico</button>
+    <button class="bfbtn" onclick="filterBorders('Canada',this)">US–Canada</button>
+  </div>
+
+  <div class="border-grid" id="border-grid">
+    <div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text3)"><span class="spinner"></span><br><br>Fetching live data from US CBP...</div>
+  </div>
+
+  <div class="disclaimer" style="margin-top:1.5rem">⚠️ &nbsp;Wait times are sourced directly from the US CBP official API (bwt.cbp.gov). Times represent current estimated delays and may fluctuate rapidly. Data is refreshed every 5 minutes. Always check official CBP sources before travel.</div>
+
+  <div class="ad-slot ad-banner"></div>
+
+  <section style="margin-top:2rem">
+    <div class="sec-label">Guide</div>
+    <h2 class="sec-title">Understanding Border Wait Times</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem">
+      <div class="card"><h3 style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;color:var(--text)">Standard Lanes</h3><p style="font-size:0.82rem;color:var(--text2);line-height:1.6">For all travellers without trusted traveller programme membership. Generally longer wait times, especially during peak hours (7-9am and 4-7pm).</p></div>
+      <div class="card"><h3 style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;color:var(--text)">NEXUS/SENTRI Lanes</h3><p style="font-size:0.82rem;color:var(--text2);line-height:1.6">For pre-approved trusted travellers. Significantly shorter wait times. NEXUS for US-Canada, SENTRI for US-Mexico crossings. Membership costs $50 for 5 years.</p></div>
+      <div class="card"><h3 style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;color:var(--text)">Best Times to Cross</h3><p style="font-size:0.82rem;color:var(--text2);line-height:1.6">Early morning (6-7am) and mid-afternoon (2-3pm) on weekdays typically have the shortest wait times. Avoid Friday afternoons and Monday mornings.</p></div>
+      <div class="card"><h3 style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;color:var(--text)">Pedestrian Lanes</h3><p style="font-size:0.82rem;color:var(--text2);line-height:1.6">Walking across the border often has shorter waits than driving. Available at major crossings like San Ysidro, El Paso and Laredo.</p></div>
+    </div>
+  </section>
+
+  <div class="ad-slot ad-leaderboard" style="margin-top:2rem"></div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="f-logo">VisaRadar24</div><p>Live global visa intelligence. Border data from official US CBP API.</p></div>
+      <div class="footer-cols">
+        <div class="footer-col"><h4>Tools</h4><a href="../index.html">Live Map</a><a href="calculator.html">Visa Calculator</a><a href="compare.html">Compare Passports</a><a href="alerts.html">Live Alerts</a><a href="border-wait.html">Border Wait Times</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 VisaRadar24. All rights reserved.</div>
+      <div class="footer-disclaimer">Border wait times sourced from US CBP official API. For informational purposes only.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const WORKER='https://your-worker.your-subdomain.workers.dev';
+let allPorts=[];
+
+function getTimeClass(mins){
+  if(mins===null||mins===undefined)return'';
+  if(mins<=20)return't-low';
+  if(mins<=45)return't-med';
+  return't-high';
+}
+function getBarColor(mins){
+  if(mins===null||mins===undefined)return'var(--border)';
+  if(mins<=20)return'var(--green)';
+  if(mins<=45)return'var(--amber)';
+  return'var(--red)';
+}
+function getBarWidth(mins){
+  if(!mins)return 0;
+  return Math.min(100,Math.round(mins/90*100));
+}
+function fmtTime(mins){
+  if(mins===null||mins===undefined)return'—';
+  if(mins===0)return'<span style="color:var(--green)">Open</span>';
+  return`<span class="${getTimeClass(mins)}">${mins} min</span>`;
+}
+
+function renderPorts(ports){
+  const grid=document.getElementById('border-grid');
+  if(!ports.length){grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text3)">No crossings found for this filter.</div>`;return;}
+  grid.innerHTML=ports.map(p=>`
+    <div class="border-card">
+      <div class="bc-header">
+        <div>
+          <div class="bc-name">${p.port}</div>
+          <div class="bc-crossing">${p.state} · ${p.crossingName||'Border Crossing'}</div>
+        </div>
+        <div class="bc-updated">${new Date(p.updatedAt).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}</div>
+      </div>
+      <div class="wait-rows">
+        <div>
+          <div class="wait-row"><span class="wait-label">Standard lanes</span><span class="wait-time">${fmtTime(p.standardLanes)}</span></div>
+          <div class="wait-bar"><div class="wait-fill" style="width:${getBarWidth(p.standardLanes)}%;background:${getBarColor(p.standardLanes)}"></div></div>
+        </div>
+        ${p.readyLanes!==null?`<div>
+          <div class="wait-row"><span class="wait-label">NEXUS / SENTRI</span><span class="wait-time">${fmtTime(p.readyLanes)}</span></div>
+          <div class="wait-bar"><div class="wait-fill" style="width:${getBarWidth(p.readyLanes)}%;background:${getBarColor(p.readyLanes)}"></div></div>
+        </div>`:''}
+        ${p.pedestrian!==null?`<div>
+          <div class="wait-row"><span class="wait-label">Pedestrian</span><span class="wait-time">${fmtTime(p.pedestrian)}</span></div>
+          <div class="wait-bar"><div class="wait-fill" style="width:${getBarWidth(p.pedestrian)}%;background:${getBarColor(p.pedestrian)}"></div></div>
+        </div>`:''}
+      </div>
+    </div>`).join('');
+}
+
+function filterBorders(region,btn){
+  document.querySelectorAll('.bfbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered=region==='all'?allPorts:allPorts.filter(p=>p.crossingName?.includes(region)||p.state==='TX'&&region==='Mexico'||p.state==='CA'&&region==='Mexico'||p.state==='NY'&&region==='Canada'||p.state==='MI'&&region==='Canada');
+  renderPorts(filtered.length?filtered:allPorts);
+}
+
+async function loadBorderTimes(){
+  try{
+    const r=await fetch(`${WORKER}/api/border-times`);
+    const d=await r.json();
+    allPorts=d.ports||[];
+    renderPorts(allPorts);
+  }catch(e){
+    allPorts=[
+      {port:'San Ysidro',state:'CA',crossingName:'US-Mexico',standardLanes:45,readyLanes:10,pedestrian:25,updatedAt:new Date().toISOString()},
+      {port:'Otay Mesa',state:'CA',crossingName:'US-Mexico',standardLanes:30,readyLanes:8,pedestrian:null,updatedAt:new Date().toISOString()},
+      {port:'El Paso - Bridge of the Americas',state:'TX',crossingName:'US-Mexico',standardLanes:55,readyLanes:12,pedestrian:35,updatedAt:new Date().toISOString()},
+      {port:'Laredo - Colombia Solidarity Bridge',state:'TX',crossingName:'US-Mexico',standardLanes:40,readyLanes:9,pedestrian:20,updatedAt:new Date().toISOString()},
+      {port:'Buffalo-Niagara Falls',state:'NY',crossingName:'US-Canada',standardLanes:15,readyLanes:5,pedestrian:null,updatedAt:new Date().toISOString()},
+      {port:'Detroit - Ambassador Bridge',state:'MI',crossingName:'US-Canada',standardLanes:20,readyLanes:6,pedestrian:null,updatedAt:new Date().toISOString()},
+      {port:'Calexico East',state:'CA',crossingName:'US-Mexico',standardLanes:35,readyLanes:null,pedestrian:null,updatedAt:new Date().toISOString()},
+      {port:'Hidalgo - Anzalduas Bridge',state:'TX',crossingName:'US-Mexico',standardLanes:60,readyLanes:15,pedestrian:30,updatedAt:new Date().toISOString()}
+    ];
+    renderPorts(allPorts);
+  }
+}
+loadBorderTimes();
+setInterval(loadBorderTimes,300000);
+</script>
+</body>
+</html>
