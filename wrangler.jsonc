@@ -24,6 +24,6 @@
   ],
   "vars": {
     "ENVIRONMENT": "production",
-    "SITE_URL": "https://visaradar24.com"
+    "SITE_URL": "https://visaradar.com"
   }
 }

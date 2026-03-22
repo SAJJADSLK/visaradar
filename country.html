@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="page-title">Country Visa Guide — VisaRadar24</title>
+<title id="page-title">Country Visa Guide — Visa Radar</title>
 <meta name="description" id="page-desc" content="Detailed visa requirements, entry rules, border wait times and travel advisories.">
-<link rel="canonical" id="page-canonical" href="https://visaradar24.com/country.html">
+<link rel="canonical" id="page-canonical" href="https://visaradar.com/country.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
@@ -34,7 +34,7 @@
 @media(max-width:768px){.entry-grid{grid-template-columns:1fr}}
 </style>
 </head>
-<body>
+<body class="page-wrap">
 <div id="nav-placeholder"></div>
 <main>
 
@@ -241,10 +241,10 @@ function getCountryCode(){
 function populatePage(code){
   const d=COUNTRY_DATA[code];
   if(!d){document.getElementById('country-name').textContent='Country not found';return;}
-  document.title=`${d.name} Visa Requirements & Entry Guide — VisaRadar24`;
+  document.title=`${d.name} Visa Requirements & Entry Guide — Visa Radar`;
   document.getElementById('page-desc').content=`Complete ${d.name} visa requirements, entry rules, travel advisories and policy changes. Updated for 2025.`;
-  document.getElementById('page-canonical').href=`https://visaradar24.com/country.html?c=${code}`;
-  document.getElementById('page-schema').textContent=JSON.stringify({"@context":"https://schema.org","@type":"Dataset","name":`${d.name} Visa Requirements`,"description":`Official visa and entry requirements for ${d.name}`,"url":`https://visaradar24.com/country.html?c=${code}`,"creator":{"@type":"Organization","name":"VisaRadar24"}});
+  document.getElementById('page-canonical').href=`https://visaradar.com/country.html?c=${code}`;
+  document.getElementById('page-schema').textContent=JSON.stringify({"@context":"https://schema.org","@type":"Dataset","name":`${d.name} Visa Requirements`,"description":`Official visa and entry requirements for ${d.name}`,"url":`https://visaradar.com/country.html?c=${code}`,"creator":{"@type":"Organization","name":"Visa Radar"}});
   document.getElementById('bc-country').textContent=d.name;
   document.getElementById('country-flag').textContent=d.flag;
   document.getElementById('country-name').textContent=d.name;

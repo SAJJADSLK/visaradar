@@ -1,9 +1,12 @@
-// shared.js — inject nav + footer + consent + AdSense on every page
+// shared.js — VISA RADAR
 
 function getNav(activePage) {
   return `
   <nav class="nav">
-    <a href="/index.html" class="nav-logo">Visa<span>Radar</span>24</a>
+    <a href="/index.html" class="nav-logo">
+      <div class="radar-icon"><div class="dot"></div></div>
+      <span class="name">VISA</span><span class="sep"> </span><span style="color:var(--gold)">RADAR</span>
+    </a>
     <div class="nav-links">
       <a href="/index.html" class="${activePage==='home'?'active':''}">Map</a>
       <a href="/calculator.html" class="${activePage==='calc'?'active':''}">Calculator</a>
@@ -21,9 +24,11 @@ function getFooter() {
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:800;margin-bottom:12px">Visa<span style="color:var(--accent)">Radar</span>24</div>
+          <div style="font-family:var(--font-display);font-size:1rem;font-weight:900;letter-spacing:0.15em;color:var(--text);margin-bottom:14px">
+            VISA <span style="color:var(--gold)">RADAR</span>
+          </div>
           <p>Live global visa &amp; border intelligence. Real data from 195 governments, updated continuously.</p>
-          <p class="mt-3" style="font-size:0.78rem;color:var(--muted)">Data sourced from official government portals, embassy RSS feeds, and US CBP. Always verify with the official embassy before travel.</p>
+          <p class="mt-3" style="font-size:0.75rem;color:var(--text3)">Data sourced from official government portals, embassy RSS feeds, and US CBP. Always verify with the official embassy before travel.</p>
         </div>
         <div class="footer-col">
           <h4>Tools</h4>
@@ -48,8 +53,8 @@ function getFooter() {
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2025 VisaRadar24. All rights reserved.</p>
-        <p>Data is informational only. Always verify with official embassy sources before travel.</p>
+        <p>© 2025 VISA RADAR · All rights reserved</p>
+        <p>Data is informational only · Always verify with official embassy sources</p>
       </div>
     </div>
   </footer>`;
@@ -62,7 +67,6 @@ function renderShared(activePage) {
   if (footerEl) footerEl.outerHTML = getFooter();
 }
 
-// Cookiebot TCF v2.3 — replace with your Cookiebot domain group ID
 function loadCookiebot() {
   const s = document.createElement('script');
   s.id = 'Cookiebot';
@@ -73,7 +77,6 @@ function loadCookiebot() {
   document.head.prepend(s);
 }
 
-// AdSense — replace with your publisher ID
 function loadAdSense() {
   const s = document.createElement('script');
   s.async = true;
@@ -83,6 +86,6 @@ function loadAdSense() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  loadCookiebot();
-  loadAdSense();
+  // loadCookiebot(); // Uncomment when Cookiebot ID is set
+  // loadAdSense();   // Uncomment when AdSense approved
 });
