@@ -284,8 +284,8 @@ function renderMapLayer(){
 
 function updateMap(){
   const p=document.getElementById('passport-select').value;
-  const names={AE:'UAE',US:'US',GB:'UK',DE:'German',IN:'Indian',CN:'Chinese',PH:'Filipino',JP:'Japanese'};
-  if(p)document.getElementById('map-subtitle').textContent=`Showing visa access for ${names[p]||p} passport holders`;
+  const names={AE:'UAE',US:'United States',GB:'United Kingdom',DE:'German',IN:'Indian',CN:'Chinese',PH:'Filipino',JP:'Japanese',SG:'Singaporean',AU:'Australian',CA:'Canadian',FR:'French'};
+  const sel=document.getElementById('passport-select');const label=names[p]||sel.options[sel.selectedIndex]?.text?.replace(/^[^a-zA-Z]+/,'').trim()||p;if(p)document.getElementById('map-subtitle').textContent=`Showing visa access for ${label} passport holders`;
   renderMapLayer();
 }
 
