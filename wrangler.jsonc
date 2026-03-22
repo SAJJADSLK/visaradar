@@ -27,8 +27,7 @@
   "kv_namespaces": [
     {
       "binding": "KV",
-      "id": "visaradar",
-      "preview_id": "e19a406a1da04103a245e6c253e7c58a"
+     { "id": "e19a406a1da04103a245e6c253e7c58a", "title": "visaradar_preview" },
     }
   ],
 
