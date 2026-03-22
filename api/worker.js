@@ -45,7 +45,11 @@ export default {
       if (path === '/api/contact' && request.method === 'POST') {
         return await handleContact(request, env, ctx, json);
       }
-      return json({ error: 'Not found' }, 404);
+      // Not an API route — serve static asset
+      if (env.ASSETS) {
+        return env.ASSETS.fetch(request);
+      }
+      return json({ error: "Not found" }, 404);
     } catch (err) {
       console.error(err);
       return json({ error: 'Internal server error' }, 500);
