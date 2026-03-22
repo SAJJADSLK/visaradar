@@ -12,7 +12,7 @@
     {
       "binding": "DB",
       "database_name": "visaradar24-db",
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+      "database_id": "307e8c3a-5c35-46b8-bea9-91fbca04acaa"
     }
   ],
   "kv_namespaces": [
