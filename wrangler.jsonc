@@ -1,20 +1,13 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "visaradar24",
   "compatibility_date": "2026-03-13",
   "compatibility_flags": ["nodejs_compat"],
-
-  // Workers Static Assets — the modern way (not Pages)
   "assets": {
     "directory": "./",
     "binding": "ASSETS",
     "not_found_handling": "single-page-application"
   },
-
-  // Main worker script handles all /api/* routes
   "main": "api/worker.js",
-
-  // D1 SQLite database — free tier, edge SQL
   "d1_databases": [
     {
       "binding": "DB",
@@ -22,16 +15,13 @@
       "database_id": "REPLACE_WITH_D1_DATABASE_ID"
     }
   ],
-
-  // KV namespace — for caching API responses
   "kv_namespaces": [
     {
       "binding": "KV",
-     { "id": "e19a406a1da04103a245e6c253e7c58a", "title": "visaradar" },
+      "id": "e19a406a1da04103a245e6c253e7c58a",
+      "preview_id": "e19a406a1da04103a245e6c253e7c58a"
     }
   ],
-
-  // Environment variables (non-secret)
   "vars": {
     "ENVIRONMENT": "production",
     "SITE_URL": "https://visaradar24.com"
