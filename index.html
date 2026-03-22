@@ -466,9 +466,10 @@ function updateMap(){
   const p=document.getElementById('passport-select').value;
   const names={AE:'UAE',US:'United States',GB:'United Kingdom',DE:'German',IN:'Indian',CN:'Chinese',PH:'Filipino',JP:'Japanese',SG:'Singaporean',AU:'Australian',CA:'Canadian',FR:'French'};
   if(p){
-    const sel=document.getElementById('passport-select');
-    const label=names[p]||sel.options[sel.selectedIndex]?.text?.replace(/^[^\w]*/,'').trim()||p;
-    document.getElementById('map-subtitle').textContent=`Scanning ${label} passport — ${visaData.filter(r=>r.from===p&&r.requirement==='visa_free').length||'–'} visa-free destinations`;
+    const label=names[p]||p;
+    const freeCount=visaData.filter(r=>r.from===p&&r.requirement==='visa_free').length;
+    const subtitle=freeCount>0?`Scanning ${label} passport — ${freeCount} visa-free destinations`:`Showing visa access for ${label} passport holders`;
+    document.getElementById('map-subtitle').textContent=subtitle;
   }
   renderMapLayer();
 }

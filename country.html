@@ -81,7 +81,7 @@
             </select>
           </div>
           <div style="display:flex;align-items:flex-end">
-            <div id="req-result" class="badge badge-gray" style="height:42px;padding:0 16px;font-size:0.85rem">Select passport above</div>
+            <div id="req-result" class="status-pill status-nodata" style="height:42px;padding:0 16px;font-size:0.85rem">Select passport above</div>
           </div>
         </div>
         <div id="req-notes" class="mt-3" style="display:none">
@@ -272,8 +272,8 @@ function updateRequirement(){
   const notesEl=document.getElementById('req-notes');
   const notesText=document.getElementById('req-notes-text');
   el.className='badge';
-  if(!rule){el.classList.add('badge-gray');el.textContent='No data — check embassy';notesEl.style.display='none';return;}
-  const map={visa_free:['badge-green','✓ Visa-free'],visa_on_arrival:['badge-blue','Visa on arrival'],esta:['badge-warn','eTA / ESTA required'],visa_required:['badge-red','Visa required']};
+  if(!rule){el.classList.add('badge-gray'); el.style.cssText='display:inline-flex;align-items:center;padding:8px 16px;font-size:0.85rem';el.textContent='No data — check embassy';notesEl.style.display='none';return;}
+  const map={visa_free:['status-free','✓ Visa-free'],visa_on_arrival:['status-arrival','Visa on arrival'],esta:['status-eta','eTA / ESTA required'],visa_required:['status-required','Visa required']};
   const [cls,label]=map[rule.requirement]||['badge-gray','Unknown'];
   el.classList.add(cls);
   el.textContent=label+(rule.max_stay?` · ${rule.max_stay} days`:'');
