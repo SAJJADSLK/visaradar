@@ -11,7 +11,7 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "visaradar24-db",
+      "database_name": "visaradar24",
       "database_id": "307e8c3a-5c35-46b8-bea9-91fbca04acaa"
     }
   ],
